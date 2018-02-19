@@ -1,0 +1,63 @@
+// Apply a natural box layout model to all elements, but allowing components to change
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+/*
+ * Resets in addition to Normalize.css
+ */
+
+// Resets margins and paddings for headers, ul, ol and p
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+p,
+html,
+body,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+// Completely resets form items
+// ----------------------------
+// Super hard reset that removes all borders
+// and radius of all form items.
+// ============================
+input,
+textarea,
+button {
+    border: 0;
+    border-radius: 0;
+    outline: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none;
+    }
+}
+
+// Add redfault responsiveness for referenced resources
+embed,
+iframe,
+img,
+object,
+video {
+    max-width: 100%;
+    height: auto;
+}

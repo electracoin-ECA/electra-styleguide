@@ -1,0 +1,56 @@
+{
+  "name": "Electra-Styleguide",
+  "version": "0.1.0",
+  "description": "Electra styleguide and pattern library",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "gulp --dev",
+    "build": "npm i && gulp"
+  },
+  "keywords": [
+    "toolkit",
+    "styleguide",
+    "framework",
+    "scaffold",
+    "patterns",
+    "library"
+  ],
+  "author": "oxymorum",
+  "engines": {
+    "node": ">=4.0",
+    "npm": ">=2.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.1",
+    "eslint": "^2.13.1",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.9.2",
+    "fabricator-assemble": "^1.1.11",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-purgecss": "^0.14.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stylelint": "^6.0.0",
+    "gulp-util": "^3.0.7",
+    "imports-loader": "^0.6.5",
+    "postcss-object-fit-images": "^1.1.2",
+    "run-sequence": "^1.2.1",
+    "script-loader": "^0.7.0",
+    "stylelint": "^8.4.0",
+    "stylelint-order": "^0.8.0",
+    "stylelint-scss": "^2.2.0",
+    "tailwindcss": "^0.4.1",
+    "webpack": "^1.13.1"
+  }
+}

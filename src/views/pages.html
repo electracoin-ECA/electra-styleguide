@@ -1,0 +1,11 @@
+---
+fabricator: true
+---
+
+<h1 data-f-toggle="labels" class="f-text f-category-title">Pages</h1>
+
+<div>
+{{#each views.pages.items}}
+	<a href="pages/{{@key}}.html" class="f-item-heading" target="_blank">{{name}}</a>
+{{/each}}
+</div>

@@ -1,0 +1,7 @@
+@mixin create-separate-selectors($selector-list) {
+    @each $selector in $selector-list {
+        #{$selector} {
+            @content;
+        }
+    }
+}

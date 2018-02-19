@@ -1,0 +1,18 @@
+/* Breakpoints
+ *
+ * If Tailwind is used remember to keep Sass breakpoint in sync with
+ * tailwind.config.js!
+ *
+ */
+
+$breakpoints: (
+    'sm': 480px,   // 30em
+    'md': 768px,   // 48em
+    'lg': 992px,  // 62em
+    'xl': 1200px,  // 75em
+);
+
+
+// Timing
+$transition-time: .2s;
+$transition-time--medium: .4s;

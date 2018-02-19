@@ -1,0 +1,47 @@
+html, body, .f-app, .f-view {
+	width: 100%;
+	height: 100%;
+}
+
+.f-app {
+	padding-top: $header-height;
+
+	.f-state--sidebar-active & {
+		padding-top: 0;
+	}
+}
+
+// view container
+.f-view {
+	display: flex;	
+	position: relative;
+
+	& > main {
+		flex: 1;
+		padding: $theme-whitespace-large;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		box-sizing: border-box;
+		position: relative;
+	}
+
+	& > aside {
+		width: 0;
+	}
+
+	&--detail {
+		position: fixed;
+		top: 0;
+		left: 0;
+
+		pointer-events: none;
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	.f-state--sidebar-active & {
+		& > aside {
+			width: $sidebar-width;
+		}
+	}
+}

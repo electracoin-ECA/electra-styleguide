@@ -1,0 +1,9 @@
+body {
+    @apply .font-sans;
+    @apply .text-base;
+    @apply .leading-normal;
+    @apply .relative;
+    @apply .pin-l;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

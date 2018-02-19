@@ -1,0 +1,69 @@
+/**
+ * Toolkit styles
+ */
+
+body {
+    font-family: sans-serif;
+}
+
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, you should import this line from it's own file:
+ *
+ * @import "./tailwind-preflight.css";
+ *
+ * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
+ *
+ * Comment out if not using Tailwind
+ */
+
+@tailwind preflight;
+
+// Configuration: Variables used across the project
+@import 'configuration/settings';
+@import 'configuration/fonts';
+
+
+// Tools: Mixins and functions used across the project, do not create any CSS output if not called
+@import 'tools/mappy-breakpoints';
+@import 'tools/create-separate-selectors';
+
+
+// Generics: High level rules, think normalize.css – nothing project design specific
+@import 'generic/reset';
+
+
+// Elements: Styles that go directly on HTML elements, no classes or ids
+@import 'elements/body';
+@import 'elements/button';
+@import 'elements/list';
+
+
+// Components: Designed UI components
+@import 'components/card';
+
+
+// Utilities
+@import 'utilities/states';
+@import 'utilities/a11y';
+@import 'utilities/helpers';
+
+/**
+ * This injects all of Tailwind's utility classes, generated based on your
+ * config file.
+ *
+ * If using `postcss-import`, you should import this line from it's own file:
+ *
+ * @import "./tailwind-utilities.css";
+ *
+ * See: https://github.com/tailwindcss/tailwindcss/issues/53#issuecomment-341413622
+ *
+ * Comment out if not using Tailwind
+ */
+
+@tailwind utilities;

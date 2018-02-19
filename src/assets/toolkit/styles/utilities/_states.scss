@@ -1,0 +1,7 @@
+// Prevent scrolling, class will be added to the html element
+.is-locked {
+    &,
+    body {
+        overflow: hidden;
+    }
+}

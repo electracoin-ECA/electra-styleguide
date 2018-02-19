@@ -1,0 +1,25 @@
+
+button,
+input[type=button],
+input[type=submit] {
+    @apply .px-4;
+    @apply .py-3;
+    @apply .font-normal;
+    @apply .bg-purple;
+    @apply .rounded;
+    @apply .text-white;
+    display: inline-block;
+    transition: position $transition-time ease-in, background-color $transition-time ease-in;
+
+    &:hover,
+    &:focus {
+        @apply .text-white;
+        @apply .bg-purple-dark;
+        @apply .no-underline;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+}

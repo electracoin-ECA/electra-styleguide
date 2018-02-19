@@ -1,0 +1,19 @@
+<div class="f-item-controls">
+	{{#if notes}}
+	<span class="f-control f-icon" data-f-toggle-control="notes" title="Toggle Notes">
+		<svg>
+			<use xlink:href="#f-icon-notes" />
+		</svg>
+	</span>
+	{{/if}}
+	<span class="f-control f-icon" data-f-toggle-control="code" title="Toggle Code">
+		<svg>
+			<use xlink:href="#f-icon-code" />
+		</svg>
+	</span>
+	<span class="f-control f-icon" data-f-toggle-control="isolation" title="Open in Fullscreen Mode">
+        <svg data-f-isolation-target="{{{@key}}}">
+			<use xlink:href="#f-icon-expand"/>
+		</svg>
+	</span>
+</div>

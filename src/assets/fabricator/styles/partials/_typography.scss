@@ -1,0 +1,90 @@
+$font-family: 'Open Sans';
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 21px;
+$font-size-2xl: 24px;
+$font-size-3xl: 28px;
+$font-size-4xl: 32px;
+$font-size-5xl: 36px;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+.f-text {
+	font-family: 'Open Sans';	
+	text-transform: none;
+}
+
+.f-text-xs {
+	font-size: $font-size-xs;
+}
+.f-text-sm {
+	font-size: $font-size-sm;
+}
+.f-text-md {
+	font-size: $font-size-md;
+}
+.f-text-lg {
+	font-size: $font-size-lg;
+}
+.f-text-xl {
+	font-size: $font-size-xl;
+}
+.f-text-2xl {
+	font-size: $font-size-2xl;
+}
+.f-text-3xl {
+	font-size: $font-size-3xl;
+}
+.f-text-4xl {
+	font-size: $font-size-4xl;
+}
+.f-text-5xl {
+	font-size: $font-size-5xl;
+}
+
+.f-text-light {
+	font-weight: $font-weight-light;
+}
+.f-text-normal {
+	font-weight: $font-weight-normal;
+}
+.f-text-bold {
+	font-weight: $font-weight-bold;
+}
+.f-text-black {
+	font-weight: $font-weight-black;
+}
+
+.f-text-uppercase {
+	text-transform: uppercase;
+}
+
+.f-category-title {
+	font-size: $font-size-5xl;
+	font-weight: $font-weight-normal;
+	text-transform: uppercase;
+	color: #333;
+	margin-bottom: 0;
+}
+
+.f-item-group-title {
+	font-size: $font-size-4xl;
+	font-weight: $font-weight-light;
+	padding-top: 2em;
+	color: #333;
+	margin: 0;
+}
+
+.f-item-title {
+	font-size: $font-size-xl;
+	font-weight: $font-weight-bold;
+	padding-top: 1.5em;
+	color: #333;
+	margin-bottom: 10px;
+}

@@ -1,0 +1,22 @@
+/**
+ * Only display content to screen readers
+ * See: http://a11yproject.com/posts/how-to-hide-content/
+ */
+
+/* stylelint-disable */
+
+.sr-only {
+    position: absolute !important;
+    overflow: hidden;
+    height: 1px;
+    width: 1px;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+
+    &:focus {
+        position: static;
+        height: auto;
+        width: auto;
+    }
+}
+

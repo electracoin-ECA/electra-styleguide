@@ -1,0 +1,4 @@
+// Hides lazyloaded images, which cannot be displayed without js
+.no-js .lazyload {
+    display: none;
+}

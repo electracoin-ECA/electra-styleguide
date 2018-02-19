@@ -1,0 +1,15 @@
+<div class="f-item-group" id="{{@key}}">
+
+	{{#if items}}
+		<h2 class="f-text f-item-group-title" data-f-toggle="labels">{{name}}</h2>
+		{{#each items}}
+		<h2 class="f-text f-item-title">{{name}}</h2>
+		{{> f-item-content this}}
+		{{/each}}
+	{{else}}
+		<h2 class="f-text f-item-title">{{name}}</h2>
+
+		{{> f-item-content this}}
+	{{/if}}
+
+</div>

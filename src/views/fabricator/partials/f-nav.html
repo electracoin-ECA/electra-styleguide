@@ -1,0 +1,29 @@
+<nav class="f-nav">
+    <div class="f-nav-group">
+        <a href="index.html" class="f-text-md">Overview</a>
+    </div>
+
+    {{#each materials}}
+    <div class="f-nav-group">
+        <a href="{{@key}}.html" class="f-text-md">{{name}}</a>
+        
+        {{#each items}}
+        <div class="f-nav-item">
+            <a href="{{@../key}}.html#{{@key}}">{{name}}</a>
+        </div>
+        {{/each}}
+    </div>
+    {{/each}} 
+
+    {{#each views}}
+    <div class="f-nav-group">
+        <a href="{{@key}}.html" class="f-text-md">{{name}}</a>
+        
+        {{#each items}}
+        <div class="f-nav-item">
+            <a href="{{@../key}}.html#{{@key}}">{{name}}</a>
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</nav>
