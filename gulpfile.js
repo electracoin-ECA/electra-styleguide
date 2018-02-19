@@ -191,29 +191,29 @@ gulp.task('toolkit:styles:lint', () => {
 
 // style optimization 
 gulp.task('toolkit:styles', ['toolkit:styles:lint', 'toolkit:styles:process'], () => {
-    class TailwindExtractor {
-        static extract(content) {
-            return content.match(/[A-z0-9-:\/]+/g)
-        }
-    }
+    // class TailwindExtractor {
+    //     static extract(content) {
+    //         return content.match(/[A-z0-9-:\/]+/g)
+    //     }
+    // }
 
-    gulp
-        .src([config.toolkit.styles.dest + '/toolkit.css'])
-        .pipe(
-            purgecss({
-                content: [ config.dest + '/*.html', config.dest + '/pages/**/*.html' ],
-                extractors: [
-                    {
-                        extractor: TailwindExtractor,
+    // gulp
+    //     .src([config.toolkit.styles.dest + '/toolkit.css'])
+    //     .pipe(
+    //         purgecss({
+    //             content: [ config.dest + '/*.html', config.dest + '/pages/**/*.html' ],
+    //             extractors: [
+    //                 {
+    //                     extractor: TailwindExtractor,
 
-                        // Specify the file extensions to include when scanning for
-                        // class names.
-                        extensions: ['html'],
-                    },
-                ],
-            })
-        )
-        .pipe(gulp.dest(config.toolkit.styles.dest))
+    //                     // Specify the file extensions to include when scanning for
+    //                     // class names.
+    //                     extensions: ['html'],
+    //                 },
+    //             ],
+    //         })
+    //     )
+    //     .pipe(gulp.dest(config.toolkit.styles.dest))
 })
 
 /**
