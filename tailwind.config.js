@@ -38,12 +38,29 @@ var defaultConfig = require('tailwindcss/defaultConfig')();
 var colors = {
     'purple': '#BE00FF',
     'purple-dark': '#A618D7',
+    'purple-translucent': 'rgba(190, 0, 255, 0.1)',
     'white': '#ffffff',
-    'black': '#222',
     'grey-dark': '#1C1242',
     'grey-light': '#D2D0D9',
     'grey-lighter': '#EDEDED',
     'grey-lightest': '#FBFAFF',
+};
+
+var spacing = {
+    '1': '3px',
+    '2': '5px',
+    '3': '8px',
+    '4': '10px', 
+    '5': '12px', 
+    '6': '14px', 
+    '7': '16px', 
+    '8': '20px', 
+    '9': '24px', 
+    '10': '30px', 
+    '11': '34px', 
+    '12': '40px', 
+    '13': '44px', 
+    '14': '48px', 
 };
 
 var customConfig = {
@@ -120,7 +137,13 @@ var customConfig = {
     */
 
     fonts: {
-        'sans': [
+        // for headings
+        'alpha': [
+            'Montserrat',
+            'sans-serif',
+        ],
+        // for other text
+        'beta': [
             'Montserrat',
             'sans-serif',
         ],
@@ -146,16 +169,28 @@ var customConfig = {
     |
     */
 
+    // 8
+    // 11
+    // 12
+    // 13
+    // 14
+    // 16
+    // 18
+    // 20
+    // 24
+    // 30
+
     textSizes: {
-        'xs': '.75rem',     // 12px
-        'sm': '.8125rem',   // 13px
-        'base': '1rem',     // 16px
-        'lg': '1.125rem',   // 18px, .subtitle
-        'xl': '1.25rem',    // 20px, h4
-        '2xl': '1.5rem',    // 24px, h3
-        '3xl': '1.875rem',  // 30px, h2
-        '4xl': '2.5rem',    // 40px, h1
-        '5xl': '3rem',      // 48px
+        '3xs':  '8px',
+        '2xs':  '11px',
+        'xs':   '12px', 
+        'sm':   '13px', // h6
+        'base': '14px', // h5
+        'lg':   '16px', // h4
+        'xl':   '18px', 
+        '2xl':  '20px', // h3
+        '3xl':  '24px', // h2
+        '4xl':  '32px', // h1
     },
 
 
@@ -174,10 +209,11 @@ var customConfig = {
     */
 
     fontWeights: {
-        'light': 300,
-        'normal': 400,
+        'regular': 400,
+        'medium': 500,
+        'semi-bold': 600,
         'bold': 700,
-        'black': 900,
+        'extra-bold': 800
     },
 
 
@@ -212,9 +248,9 @@ var customConfig = {
     */
 
     tracking: {
-        'tight': '-0.05em',
+        'tight': '-0.1px',
         'normal': '0',
-        'wide': '0.05em',
+        'wide': '0.1px',
     },
 
 
@@ -265,10 +301,7 @@ var customConfig = {
 
     borderWidths: {
         default: '1px',
-        '0': '0',
-        '2': '2px',
-        '4': '4px',
-        '8': '8px',
+        '0': '0'
     },
 
 
@@ -289,7 +322,7 @@ var customConfig = {
     |
     */
 
-    borderColors: Object.assign({ default: colors['grey-light'] }, colors),
+    borderColors: Object.assign({ default: colors['grey-lighter'] }, colors),
 
 
     /*
@@ -310,9 +343,8 @@ var customConfig = {
 
     borderRadius: {
         'none': '0',
-        'sm': '.125rem',
-        default: '.25rem',
-        'lg': '.5rem',
+        default: '5px',
+        'lg': '10px',
         'full': '9999px',
     },
 
@@ -339,32 +371,20 @@ var customConfig = {
 
     width: {
         'auto': 'auto',
-        'px': '1px',
-        '1': '0.25rem',
-        '2': '0.5rem',
-        '3': '0.75rem',
-        '4': '1rem',
-        '6': '1.5rem',
-        '8': '2rem',
-        '10': '2.5rem',
-        '12': '3rem',
-        '16': '4rem',
-        '24': '6rem',
-        '32': '8rem',
-        '48': '12rem',
-        '64': '16rem',
-        '128': '19rem',
         '1/2': '50%',
         '1/3': '33.33333%',
-        '2/3': '66.66667%',
         '1/4': '25%',
-        '3/4': '75%',
         '1/5': '20%',
-        '2/5': '40%',
-        '3/5': '60%',
-        '4/5': '80%',
         '1/6': '16.66667%',
-        '5/6': '83.33333%',
+        'golden-small': '38.2%',
+        'golden-large': '61.8%',
+        '1': '24px',
+        '2': '30px',
+        '4': '42px',
+        '8': '75px',
+        '10': '84px',
+        '12': '128px',
+        '16': '190px',
         'full': '100%',
         'screen': '100vw',
     },
@@ -387,20 +407,13 @@ var customConfig = {
 
     height: {
         'auto': 'auto',
-        'px': '1px',
-        '1': '0.25rem',
-        '2': '0.5rem',
-        '3': '0.75rem',
-        '4': '1rem',
-        '6': '1.5rem',
-        '8': '2rem',
-        '10': '2.5rem',
-        '12': '3rem',
-        '16': '4rem',
-        '24': '6rem',
-        '32': '8rem',
-        '48': '12rem',
-        '64': '16rem',
+        '1': '24px', // avatar small
+        '2': '30px', // logo?
+        '4': '42px', // avatar medium
+        '8': '75px', // header
+        '10': '84px', // avatar large
+        '12': '128px', // qr code
+        '16': '190px',
         'full': '100%',
         'screen': '100vh',
     },
@@ -463,16 +476,8 @@ var customConfig = {
     */
 
     maxWidth: {
-        'xs': '20rem',
-        'sm': '30rem',
-        'md': '40rem',
-        'lg': '49rem',
-        'xl': '60rem',
-        '2xl': '72rem',
-        '3xl': '80rem',
-        '4xl': '90rem',
-        '5xl': '100rem',
         'full': '100%',
+        'screen': '100vw',
     },
 
 
@@ -511,18 +516,7 @@ var customConfig = {
     |
     */
 
-    padding: {
-        'px': '1px',
-        '0': '0',
-        '1': '0.25rem',
-        '2': '0.5rem',
-        '3': '0.75rem',
-        '4': '1rem',
-        '6': '1.5rem',
-        '8': '2rem',
-        '9': '3rem',
-        '10': '4rem',
-    },
+    padding: spacing,
 
 
     /*
@@ -540,20 +534,7 @@ var customConfig = {
     |
     */
 
-    margin: {
-        'auto': 'auto',
-        'px': '1px',
-        '0': '0',
-        '1': '0.25rem',
-        '2': '0.5rem',
-        '3': '0.75rem',
-        '4': '1rem',
-        '6': '1.5rem',
-        '8': '2rem',
-        '9': '3rem',
-        '10': '4rem',
-        '11': '5rem',
-    },
+    margin: spacing,
 
 
     /*
@@ -571,18 +552,7 @@ var customConfig = {
     |
     */
 
-    negativeMargin: {
-        'px': '1px',
-        '0': '0',
-        '1': '0.25rem',
-        '2': '0.5rem',
-        '3': '0.75rem',
-        '4': '1rem',
-        '6': '1.5rem',
-        '8': '2rem',
-        '9': '3rem',
-        '10': '4rem',
-    },
+    negativeMargin: spacing,
 
 
     /*
@@ -602,10 +572,7 @@ var customConfig = {
     */
 
     shadows: {
-        default: '0 2px 4px 0 rgba(0,0,0,0.10)',
-        'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
-        'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
-        'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+        default: '0 0 25px 0 rgba(0,0,0,0.05)',
         'none': 'none',
     },
 
@@ -626,11 +593,11 @@ var customConfig = {
     zIndex: {
         'auto': 'auto',
         '0': 0,
-        '10': 10,
-        '20': 20,
-        '30': 30,
-        '40': 40,
-        '50': 50,
+        '1': 10,
+        '2': 20,
+        '3': 30,
+        '4': 40,
+        '5': 50,
     },
 
 
@@ -649,10 +616,9 @@ var customConfig = {
 
     opacity: {
         '0': '0',
-        '25': '.25',
-        '40': '.4',
-        '50': '.5',
-        '75': '.75',
+        '10': '.1',
+        '15': '.15',
+        '80': '.8',
         '100': '1',
     },
 
@@ -776,4 +742,3 @@ var customConfig = {
 };
 
 module.exports = customConfig;
-// module.exports = defaultConfig;

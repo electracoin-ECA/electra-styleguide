@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "gulp --dev",
+    "fabricator": "gulp fabricator:assemble",
     "build": "npm i && gulp"
   },
   "keywords": [
@@ -26,7 +27,6 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "browser-sync": "^2.13.0",
-    "clipboard": "^2.0.0",
     "del": "^2.2.1",
     "eslint": "^2.13.1",
     "eslint-config-airbnb-base": "^3.0.1",
@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "split.js": "^1.3.5",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "clipboard": "^2.0.0"
   }
 }
