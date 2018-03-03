@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js f-state--sidebar-active" lang="">
+<html lang="en" class="f-html f-state--sidebar-active">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -24,10 +24,6 @@
     <!-- /fabricator styles -->
     {{/if}}
 
-    <!-- legacy styles -->
-    
-    <!-- /legacy styles -->
-
     <!-- toolkit styles -->
     <link rel="stylesheet" href="{{#if baseurl}}{{ baseurl }}/{{/if}}assets/toolkit/styles/toolkit.css">
     <!-- /toolkit styles -->
@@ -38,62 +34,51 @@
     <script>
         WebFont.load({
             google: {
-                families: ['Open Sans:300,400,700,900']
+                families: ['Montserrat:100,300,500,700']
             }
         });
     </script>
     <!-- /fabricator scripts header -->
     {{/if}}
 </head>
-<body>
-    {{#if fabricator}}
-    <header class="f-header">
-        <img class="f-header__logo" src="assets/toolkit/images/logo.svg" width="85">
-        <h2 class="f-header__title f-title f-text f-text-sm f-text-bold">Styleguide</h2>
-        <div class="f-header__menu-toggle" data-f-toggle-nav>
-            <svg class="f-icon f-icon--size-medium">
-                <use xlink:href="assets/toolkit/images/icons/sprite.svg#bars"></use>
-            </svg>
-        </div>
-    </header>
+<body class="f-body">
+{{#if fabricator}}
+    {{> f-icons}}
+    {{> f-header}}
     <div class="f-app" data-f-app>
-        <div class="f-view f-view--content" data-f-content>
-            <div class="f-fullscreen-nav" data-f-fullscreen-nav>
+        <div class="f-view f-view--content">
+            <div class="f-nav--mobile f-font" data-f-mobile-nav>
                 {{> f-nav}}
             </div>
-            <aside class="f-sidebar" data-f-sidebar>
+            <aside class="f-sidebar f-font" data-f-sidebar>
                 <header class="f-sidebar__header">
-                    <img src="assets/toolkit/images/logo.svg" width="100">
-                    <h2 class="f-text f-title f-text-sm f-text-bold">Styleguide</h2>
+                    {{> f-logo width="100"}}
+                    <div class="f-sidebar__title">Styleguide</div>
                 </header>
-                <div class="f-sidebar__nav-container">
+                <div class="f-nav--progress">
                     {{> f-nav}}
+                    <svg class="nav-marker" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-dasharray="0, 0, 0, 1000"/>
+                    </svg>
                 </div>
             </aside>  
-            <main class="f-main">
-    {{/if}}
+            <main class="f-main f-whitespace--view" data-f-jump-container>
+{{/if}}
 
-    {% body %}
+{% body %}
 
-    {{#if fabricator}}    
-            </main>  
+{{#if fabricator}}    
+            </main>
         </div>    
-        <div class="f-view f-view--detail" data-f-overlay>
-    
-        </div>
+        {{> f-fullscreen}}
     </div>
-    {{/if}}
+{{/if}}
 
-
-    {{#if fabricator}}
+{{#if fabricator}}
     <!-- fabricator scripts -->
     <script src="{{#if baseurl}}{{ baseurl }}/{{/if}}assets/fabricator/scripts/fabricator.js"></script>
     <!-- /fabricator scripts -->
-    {{/if}}
-
-    <!-- legacy scripts -->
-
-    <!-- /legacy scripts -->
+{{/if}}
 
     <!-- toolkit scripts -->
     <script src="{{#if baseurl}}{{ baseurl }}/{{/if}}assets/toolkit/scripts/toolkit.js"></script>

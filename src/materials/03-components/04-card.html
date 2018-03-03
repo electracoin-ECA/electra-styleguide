@@ -1,0 +1,17 @@
+---
+notes: |
+    - Groups content visually. 
+    - Has optional action buttons. Drop 1 or 2 buttons within `c-card__actions`. Use one button to have one primary action (e.g. confirm). Add another button below the first one (in the markup) to also have a secondary action (e.g. cancel).
+    - Add modifier `c-card--content-centered` to have all elements withing `c-card__content` horizontally and vertically centered.
+---
+
+<div class="c-card">
+    <div class="c-card__content">
+        <h2>Card Title</h2>
+        ((CARD CONTENT))
+    </div>
+    <div class="c-card__actions">
+        {{> button}}
+        {{> button}}
+    </div>
+</div>

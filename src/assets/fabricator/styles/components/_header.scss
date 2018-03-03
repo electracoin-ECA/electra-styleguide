@@ -1,0 +1,61 @@
+$header_height: $toolbar_height;
+$header_padding: $whitespace-base * $whitespace-scale * 0.9;
+$header_shadow: $shadow--bottom-inset;
+$header_background-color: $color--grey-lightest;
+$header__button_color: $color--grey-darker;
+$header__button_background-color: $color--grey-lightest;
+$header__button_background-color--active: $color--grey-lighter;
+$header__button_border-width: $border-width;
+$header__button_border-style: $border-style;
+$header__button_border-color: $color--grey-light;
+
+.f-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: $header_height;
+	box-shadow: $header_shadow;
+	background-color: $header_background-color;
+	padding-left: $header_padding;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	overflow: hidden;
+
+	&__title {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: $header_height;
+		line-height: $header_height;
+		text-align: center;
+		margin: 0;
+		pointer-events: none;
+	}
+
+	&__button-toggle-nav {
+		box-shadow: $header_shadow;
+		width: 1.1 * $header_height;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		text-align: center;
+		border-left: $header__button_border-width $header__button_border-style $header__button_border-color;		
+		transition: background-color $transition-duration ease;
+		background: $header__button_background-color;
+		fill: $header__button_color;
+
+		&:hover {
+			background: $header__button_background-color--active;
+		}
+	}
+
+	.f-state--sidebar-active & {
+		height: 0;
+	}
+}

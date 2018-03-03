@@ -1,0 +1,57 @@
+
+.f-color-boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.f-color-box {
+    width: calc(33.33% - 20px);
+    height: 180px;
+    display: flex;
+    jsutify-content: space-around;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 10px;
+    box-shadow: $shadow--small;
+    text-align: center;
+
+    &__preview {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            background: #fff;
+            padding: 5px;
+            color: #222;
+        }
+    }
+
+    &__info {
+        padding: 10px 0;
+        flex-grow: 0;
+        flex-shrink: 0;
+        background: $color--grey-lightest;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: $font--main;
+
+        span {
+            display: block;
+            font-weight: 300;
+            font-family: $font--notes;
+        }
+    }
+}
+
+@media screen and (max-width: 55em) {
+    .f-color-box {
+        width: calc(50% - 10px);
+        margin: 5px;
+    }
+}

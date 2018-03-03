@@ -1,9 +1,16 @@
 body {
-    @apply .font-sans;
+    @apply .font-beta;
     @apply .text-base;
     @apply .leading-normal;
+    @apply .tracking-wide;
     @apply .relative;
     @apply .pin-l;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
 }

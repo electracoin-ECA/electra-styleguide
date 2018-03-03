@@ -1,0 +1,26 @@
+$sidebar_shadow: $shadow--right-inset;
+$sidebar_background-color: $color--grey-lightest;
+$sidebar_width: 14em;
+
+.f-sidebar {
+	box-shadow: $sidebar_shadow;
+	overflow-y: auto;
+	background-color: $sidebar_background-color;
+	width: 0;
+
+	&__header {
+		width: 100%;
+		height: auto;
+		padding: 24px 24px 0 24px;
+		box-sizing: border-box;
+	}
+
+	&__title {
+		font-size: 14px;
+		font-weight: 300;
+	}
+
+	.f-state--sidebar-active & {
+		width: $sidebar_width;
+	}
+}

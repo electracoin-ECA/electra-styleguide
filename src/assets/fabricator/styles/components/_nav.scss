@@ -1,0 +1,77 @@
+$nav_font-weight: 300;
+
+$nav__item_border-width: $border-width;
+$nav__item_border-style: $border-style;
+$nav__item_border-color: $color--grey-lighter;
+
+.f-nav {
+	margin-top: $whitespace-scale * $whitespace-base * 0.75;
+	position: relative;
+	line-height: normal;
+	font-family: $font--main;
+	font-weight: $nav_font-weight;
+}
+
+.f-nav--progress {
+	position: relative;
+}
+
+.nav-marker {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 3px;
+  height: 100%;
+  
+  path {
+	stroke: $color--accent;
+	fill: none;
+	stroke-width: 5;
+    transition: all $transition-duration cubic-bezier(.57,.17,.56,.77);
+  }
+}
+
+.f-nav-category {
+	width: 100%;
+}
+
+a.f-nav-category-name {
+	padding: 0.65em 24px;
+	margin-top: 5px;
+	white-space: nowrap;
+	font-size: 13px;
+	display: block;
+	color: black;
+	font-weight: 700;
+	color: #333;
+	text-transform: uppercase;
+	transition: all $transition-duration ease;
+
+	&.visible {
+		color: $color--accent;
+	}
+}
+
+a.f-nav-item {
+	display: block;
+	// box-sizing: border-box;
+	font-size: 13px;
+	text-decoration: none;
+	font-weight: 500;
+	border-top: $nav__item_border-width $nav__item_border-style $nav__item_border-color;
+	background-color: #fff;
+	color: #444;
+	padding: 0.65em 24px;
+
+	background-color: $color-button--background;
+	transition: all $transition-duration ease;
+
+	&:hover {
+		background-color: $color-button--background-active;
+	}
+  
+	&.visible {
+		color: $color--accent;
+		background-color: $color-button--background-active;
+	}
+}

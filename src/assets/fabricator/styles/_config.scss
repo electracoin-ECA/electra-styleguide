@@ -1,0 +1,28 @@
+$shadow--small: 0px 0px 5px rgba(12,12,13,.1);
+$shadow--bottom-inset: inset 0px -4px 8px rgba(12,12,13,.03);
+$shadow--right-inset: inset -4px 0px 8px rgba(12,12,13,.03);
+
+$font--main: Montserrat;
+$font--notes: monospace;
+$font--code: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+$color--accent: $color--purple;
+
+$border-width: 2px;
+$border-style: solid;
+
+$whitespace-scale: 1; // good range: 0.8 - 1.2
+$whitespace-base: 30px;
+
+$ruler-size: 37px; // needs to be the size specified as 'rulerHeight' when initializing the ruler in fabricator.js + 2px
+
+$toolbar_height: 55px;
+
+$transition-duration: .1s;
+
+
+
+
+$color-button--background: transparent; 
+$color-button--background-active: rgba(0,0,0,0.02);
+$color-button--border: #eaeaea;

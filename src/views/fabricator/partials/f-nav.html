@@ -1,28 +1,22 @@
-<nav class="f-nav">
-    <div class="f-nav-group">
-        <a href="index.html" class="f-text-md">Overview</a>
-    </div>
+<nav class="f-nav f-font">
+    <a class="f-link--category f-nav-category-name" data-jump-target="index" href="#index">Introduction</a>
 
     {{#each materials}}
-    <div class="f-nav-group">
-        <a href="{{@key}}.html" class="f-text-md">{{name}}</a>
+    <a class="f-link--category f-nav-category-name" data-jump-target="{{@key}}" href="#{{@key}}">{{name}}</a>
         
+    <div class="f-nav-category">
         {{#each items}}
-        <div class="f-nav-item">
-            <a href="{{@../key}}.html#{{@key}}">{{name}}</a>
-        </div>
+        <a class="f-link--item f-nav-item" data-jump-target="{{@key}}" href="#{{@key}}">{{name}}</a>
         {{/each}}
     </div>
     {{/each}} 
 
     {{#each views}}
-    <div class="f-nav-group">
-        <a href="{{@key}}.html" class="f-text-md">{{name}}</a>
-        
+    <a class="f-link--category f-nav-category-name" data-jump-target="{{@key}}" href="#{{@key}}">{{name}}</a>
+
+    <div class="f-nav-category">
         {{#each items}}
-        <div class="f-nav-item">
-            <a href="{{@../key}}.html#{{@key}}">{{name}}</a>
-        </div>
+        <a class="f-link--item f-nav-item" href="pages/{{@key}}.html" target="_blank">{{name}}</a>
         {{/each}}
     </div>
     {{/each}}

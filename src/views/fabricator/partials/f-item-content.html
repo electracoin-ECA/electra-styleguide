@@ -1,15 +1,24 @@
+<div class="f-item">
+	<div class="f-item__header">
+		<div class="f-item__title" data-f-fullscreen-title-key="{{@key}}">{{name}}</div>
+		<div class="f-item__controls">
+			<div class="f-item__control" data-clipboard-trigger data-clipboard-text="{{material @key @root}}">
+			    {{> f-icon icon="copy"}}
+			</div>
+			<div class="f-item__control" data-f-open-fullscreen data-f-fullscreen-key="{{@key}}">
+				{{> f-icon icon="expand"}}
+			</div>
+		</div>
+	</div>
 {{#if notes}}
-	<div class="f-item-notes f-text f-text-md f-text-light" data-f-toggle="notes">
+	<div class="f-item__notes" data-f-toggle="notes">
 		{{{notes}}}
 	</div>
 {{/if}}
-
-<div class="f-item-card">
-	<div class="f-item-preview" data-f-isolation-content="{{{@key}}}" >
+	<div class="f-item__preview" data-f-fullscreen-content-key="{{@key}}" >
 		{{{material @key @root}}}
 	</div>
-	
-	<div class="f-item-code f-item-hidden" data-f-toggle="code">
+	<div class="f-item__code" data-f-toggle="code">
 <code class="language-markup">
 {{material @key @root}}</code>
 	</div>

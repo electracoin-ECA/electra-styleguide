@@ -1,0 +1,24 @@
+
+.f-page-boxes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.f-page-box {
+    width: calc(33.33% - 20px);
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 10px;
+    box-shadow: $shadow--small;
+    text-decoration: none;
+    color: $color--grey-dark;
+    background: $color--grey-lightest;
+    text-align: center;
+
+    &:hover {
+        color: $color--grey-darkest;
+    }
+}

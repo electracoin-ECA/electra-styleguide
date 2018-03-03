@@ -1,0 +1,106 @@
+$item_padding: $whitespace-base * $whitespace-scale * 1.33;
+$item_padding--mobile: $whitespace-base * $whitespace-scale;
+$item_border-radius: 6px;
+$item_border-width: $border-width;
+$item_border-style: $border-style;
+$item_border-color: $color--grey-lighter;
+$item__header_height: 45px;
+$item__header_background: #f7f7f7;
+$item__title_font-size: 16px;
+$item__title_font-weight: 700;
+$item__title_color: #222;
+$item__notes_font-family: $font--notes;
+$item__notes_font-size: 14px;
+$item__notes_font-weight: 300;
+$item__notes_line-height: 21px;
+$item__notes_color: #555;
+$item__code_background-color: $color--grey-lightest;
+$item__control_icon-color: #222;
+
+.f-item {
+	position: relative;
+	border: $item_border-width $item_border-style $item_border-color;
+	border-radius: $item_border-radius;
+	overflow: hidden;
+	margin-top: $item_padding--mobile;
+
+	@media screen and (min-width: 55em) {
+		margin-top: $item_padding;
+	}
+
+	&__header {
+		height: $item__header_height;
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: $item__header_background;
+	}
+
+	&__title {
+		padding: 0 $whitespace-scale * $whitespace-base * 0.6;
+		font-size: $item__title_font-size;
+		font-family: $font--main;
+		font-weight: $item__title_font-weight;
+		color: $item__title_color;
+		display: inline-block;
+	}
+	
+	&__controls {
+		height: $item__header_height;
+		display: flex;	
+	}
+
+	&__control {
+		display: flex;
+		height: $item__header_height;
+		border-left: $item_border-width $item_border-style $item_border-color;
+		width: 1.1 * $item__header_height;
+		cursor: pointer;
+		fill: $item__control_icon-color;
+		transition: background-color $transition-duration ease;
+
+		&:hover {
+			background-color: $color-button--background-active;
+		}
+
+		svg {
+			margin: auto;
+		}
+	}
+
+	&__notes {
+		padding: $whitespace-scale * $whitespace-base * 0.6 $whitespace-scale * $whitespace-base * 0.6;
+		font-size: $item__notes_font-size;
+		line-height: $item__notes_line-height;
+		font-weight: $item__notes_font-weight;
+		color: $item__notes_color;
+		font-family: $item__notes_font-family;
+
+		ul {
+			padding: 0 $whitespace-scale * $whitespace-base * 0.6;
+			margin: 0;
+		}
+	}
+
+	&__preview {
+		padding: $whitespace-scale * $whitespace-base * 0.7 $whitespace-scale * $whitespace-base * 0.6;
+	}
+
+	&__code {
+		position: relative;
+		padding: $whitespace-scale * $whitespace-base * 0.4 $whitespace-scale * $whitespace-base * 0.6;
+		overflow: auto;
+		background: $item__code_background-color;
+
+		pre {
+			margin: 0;
+		}
+	}
+	
+	&__header,
+	&__notes,
+	&__preview {
+		border-bottom: $item_border-width $item_border-style $item_border-color;
+	}
+}

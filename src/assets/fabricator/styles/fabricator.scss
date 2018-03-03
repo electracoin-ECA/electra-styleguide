@@ -3,13 +3,31 @@
  * Class selectors are namespaced with "f-"
  */
 
-@import 'partials/variables';
-@import 'partials/typography';
+// utility
+@import 'utility/colors';
 
-@import 'partials/code';
-@import 'partials/app';
-@import 'partials/header';
-@import 'partials/sidebar';
-@import 'partials/nav';
-@import 'partials/item';
-@import 'partials/icon';
+// settings
+@import 'config';
+
+// reset all styles of namespaced classes to prevent overrides by toolkit styles 
+@import 'generic/reset';
+
+// elements
+@import 'elements/link';
+@import 'elements/icon';
+@import 'elements/code';
+@import 'elements/switch';
+
+// components
+@import 'components/app';
+@import 'components/header';
+@import 'components/sidebar';
+@import 'components/fullscreen';
+@import 'components/nav';
+@import 'components/nav--mobile';
+@import 'components/category';
+@import 'components/item';
+@import 'components/ruler';
+@import 'components/color-box';
+@import 'components/page-box';
+@import 'components/logo-box';

@@ -1,0 +1,9 @@
+// reset text styles (so they are not overriden by the toolkit styles)
+.f-font {
+	a, p {
+		text-transform: none;
+		text-decoration: none;
+		margin: 0;
+		padding: 0;
+	}
+}

@@ -1,0 +1,27 @@
+$nav-mobile_background-color: $color--white;
+
+.f-nav--mobile {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: $nav-mobile_background-color;
+	z-index: 10;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity $transition-duration ease;
+
+	.f-state--menu-active & {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	.f-state--sidebar-active & {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+}

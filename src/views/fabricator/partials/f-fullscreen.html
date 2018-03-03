@@ -1,0 +1,16 @@
+<div class="f-fullscreen">
+    <div class="f-fullscreen__header f-font">
+        <div data-f-fullscreen-title class="f-fullscreen__title"></div>
+        <div class="f-fullscreen__controls">           
+            {{> f-switch key="resize" label="Resize"}}
+            {{> f-switch key="ruler" label="Ruler"}}
+            <div data-f-close-fullscreen class="f-fullscreen__button-close">
+                {{> f-icon icon="close"}}
+            </div>
+        </div>
+    </div>
+    <div class="f-fullscreen__main">
+        <div data-f-fullscreen-markup class="f-fullscreen__content"></div>
+        <div data-f-fullscreen-markup-negative class="f-fullscreen__content--negative"></div>
+    </div>
+</div>

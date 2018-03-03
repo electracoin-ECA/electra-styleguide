@@ -2,10 +2,6 @@
  * Toolkit styles
  */
 
-body {
-    font-family: sans-serif;
-}
-
 /**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
@@ -31,6 +27,7 @@ body {
 
 // Tools: Mixins and functions used across the project, do not create any CSS output if not called
 @import 'tools/mappy-breakpoints';
+@import 'tools/svg-uri';
 @import 'tools/create-separate-selectors';
 
 
@@ -40,11 +37,15 @@ body {
 
 // Elements: Styles that go directly on HTML elements, no classes or ids
 @import 'elements/body';
+@import 'elements/headings';
 @import 'elements/button';
 @import 'elements/list';
 
 
 // Components: Designed UI components
+@import 'components/app-layout';
+@import 'components/header';
+@import 'components/sidebar';
 @import 'components/card';
 
 

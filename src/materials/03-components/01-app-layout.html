@@ -1,0 +1,19 @@
+---
+notes: |
+    - Controls the layout for Electra apps. Use this markup in the root component of your application and place header, sidebar and view content as marked by the placeholders. 
+    - See `Pages > App Layout` for an example that combines app layout with header and sidebar components.
+---
+
+<div class="c-app-layout">
+	<div class="c-app-layout__toolbar">
+		((HEADER))
+	</div>
+	<div class="c-app-layout__container">
+		<aside>
+			((SIDEBAR))
+		</aside>
+		<main>
+			((VIEW))
+		</main>
+	</div>
+</div>

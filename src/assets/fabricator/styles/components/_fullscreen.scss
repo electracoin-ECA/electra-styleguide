@@ -1,0 +1,119 @@
+$fullscreen-header_shadow: $shadow--bottom-inset;
+$fullscreen-header_background-color: $color--grey-lightest;
+$fullscreen-resize-gutter_background-color: $color--grey-lightest;
+$fullscreen-resize-gutter_background-color--active: $color--grey-lighter;
+$fullscreen-resize-gutter_icon-size: 14px;
+$fullscreen-close-button_color: $color--grey-darker;
+$fullscreen-close-button_background-color: $color--grey-lightest;
+$fullscreen-close-button_background-color--active: $color--grey-lighter;
+$fullscreen-close-button_icon-size: 22px;
+
+.f-fullscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	transition: opacity $transition-duration ease;
+
+	[data-f-state--fullscreen="active"] & {
+		pointer-events: auto;
+		visibility: visible;
+		opacity: 1;
+	}
+
+	&__header {
+		height: $toolbar_height;
+		position: relative;
+		z-index: 1;
+		flex-shrink: 0;
+		flex-grow: 0;
+		box-shadow: $fullscreen-header_shadow;
+		background-color: $fullscreen-header_background-color;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__title {
+		padding-left: $whitespace-scale * $whitespace-base * 0.9;
+	}
+
+	&__controls {
+		display: flex;
+
+		.switch-item {
+			padding-right: $whitespace-scale * $whitespace-base * 0.7;
+		}
+	}
+
+	&__main {
+		display: flex;
+		flex: 1;
+		z-index: 0;
+		box-sizing: border-box;
+
+		.gutter {
+			display: flex;
+			cursor: move;
+			background-color: $fullscreen-resize-gutter_background-color;
+			fill: $fullscreen-close-button_color;
+
+			&:hover {
+				background-color: $fullscreen-resize-gutter_background-color--active;				
+			}
+
+			svg {
+			    height: $fullscreen-resize-gutter_icon-size;
+				width: $fullscreen-resize-gutter_icon-size;
+			    position: relative;
+			    top: 18px;
+			    margin: auto;
+			}
+		}
+	}
+}
+
+.f-fullscreen__button-close {
+	width: $toolbar_height * 1.1;
+	height: $toolbar_height;
+	border-left: 1px solid #f0f0f0;
+	display: flex;
+	float: right;
+	cursor: pointer;
+	background-color: $fullscreen-close-button_background-color;
+	transition: background-color $transition-duration ease;
+
+	&:hover {
+		background-color: $fullscreen-close-button_background-color--active;
+	}
+
+	svg {
+		width: $fullscreen-close-button_icon-size;
+		height: $fullscreen-close-button_icon-size;
+		margin: auto;
+	}
+}	
+
+.f-fullscreen__content {
+    position: relative;
+    overflow-x: hidden;
+    width: 100%;
+
+    [data-f-state--fullscreen-ruler="active"] & {
+	    padding-top: $ruler-size;
+	    padding-left: $ruler-size;    	
+    }
+}
+
+.f-fullscreen__content--negative {
+	position: relative;
+	z-index: 1;
+	display: flex;
+}

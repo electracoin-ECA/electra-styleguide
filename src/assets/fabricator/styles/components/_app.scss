@@ -1,0 +1,27 @@
+.f-html, .f-body, .f-app, .f-view {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.f-app {
+	padding-top: $toolbar_height;
+
+	.f-state--sidebar-active & {
+		padding-top: 0;
+	}
+}
+
+// view container
+.f-view {
+	display: flex;	
+	position: relative;
+
+	& > main {
+		flex: 1;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		box-sizing: border-box;
+		position: relative;
+	}
+}

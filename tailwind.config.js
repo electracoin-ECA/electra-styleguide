@@ -29,41 +29,12 @@ var defaultConfig = require('tailwindcss/defaultConfig')();
 
 /*
 |-------------------------------------------------------------------------------
-| Colors                                    https://tailwindcss.com/docs/colors
+| Your config
 |-------------------------------------------------------------------------------
 |
-| Here you can specify the colors used in your project. To get you started,
-| we've provided a generous palette of great looking colors that are perfect
-| for prototyping, but don't hesitate to change them for your project. You
-| own these colors, nothing will break if you change everything about them.
-|
-| We've used literal color names ("red", "blue", etc.) for the default
-| palette, but if you'd rather use functional names like "primary" and
-| "secondary", or even a numeric scale like "100" and "200", go for it.
-|
-| Colors that are commented out are neihter used nor defined by design (yet),
-| but might be useful for future usuage.
+| This variable contains your custom Tailwind config. 
 |
 */
-
-// Main text color
-// #1C1242
-
-// Secondary text
-// #D2D0D9
-
-// Background color:
-// #FBFAFF
-
-// Popup color:
-// #191E38
-
-// Border color
-// EDEDED
-
-// And maybe this one, this is the hover over in a dropdown
-// #FBF2FC
-
 var colors = {
     'purple': '#BE00FF',
     'purple-dark': '#A618D7',
@@ -75,14 +46,19 @@ var colors = {
     'grey-lightest': '#FBFAFF',
 };
 
-module.exports = {
+var customConfig = {
 
     /*
     |-----------------------------------------------------------------------------
     | Colors                                  https://tailwindcss.com/docs/colors
     |-----------------------------------------------------------------------------
     |
-    | The color palette defined above is also assigned to the "colors" key of
+    | Here you can specify the colors used in your project. To get you started,
+    | we've provided a generous palette of great looking colors that are perfect
+    | for prototyping, but don't hesitate to change them for your project. You
+    | own these colors, nothing will break if you change everything about them.
+    |
+    | The color palette is also assigned to the "colors" key of
     | your Tailwind config. This makes it easy to access them in your CSS
     | using Tailwind's config helper. For example:
     |
@@ -797,5 +773,7 @@ module.exports = {
         important: false,
         separator: ':',
     },
-
 };
+
+module.exports = customConfig;
+// module.exports = defaultConfig;

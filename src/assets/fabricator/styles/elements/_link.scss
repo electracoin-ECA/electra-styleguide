@@ -1,0 +1,15 @@
+
+.f-link {
+	color: $color--accent;
+	padding-bottom: 1px;
+	border-bottom: 1px solid;
+	border-color: $color--grey-light;
+	text-decoration: none;
+	transition: all $transition-duration linear;
+	// font-family: $font--main;
+
+	&:hover {
+		padding-bottom: 2px;
+		border-color: $color--accent;
+	}
+}

@@ -183,6 +183,7 @@ gulp.task('toolkit:styles:lint', () => {
     return gulp
         .src(config.toolkit.styles.lint)
         .pipe(stylelint({
+            failAfterError: false,
             reporters: [
                 { formatter: 'string', console: true },
             ],
@@ -190,31 +191,8 @@ gulp.task('toolkit:styles:lint', () => {
 })
 
 // style optimization 
-gulp.task('toolkit:styles', ['toolkit:styles:lint', 'toolkit:styles:process'], () => {
-    // class TailwindExtractor {
-    //     static extract(content) {
-    //         return content.match(/[A-z0-9-:\/]+/g)
-    //     }
-    // }
-
-    // gulp
-    //     .src([config.toolkit.styles.dest + '/toolkit.css'])
-    //     .pipe(
-    //         purgecss({
-    //             content: [ config.dest + '/*.html', config.dest + '/pages/**/*.html' ],
-    //             extractors: [
-    //                 {
-    //                     extractor: TailwindExtractor,
-
-    //                     // Specify the file extensions to include when scanning for
-    //                     // class names.
-    //                     extensions: ['html'],
-    //                 },
-    //             ],
-    //         })
-    //     )
-    //     .pipe(gulp.dest(config.toolkit.styles.dest))
-})
+// gulp.task('toolkit:styles', ['toolkit:styles:process'], () => {
+gulp.task('toolkit:styles', ['toolkit:styles:lint', 'toolkit:styles:process'])
 
 /**
  *
@@ -262,6 +240,42 @@ gulp.task('toolkit:fonts', () => {
     return gulp
         .src(config.toolkit.fonts.src)
         .pipe(gulp.dest(config.toolkit.fonts.dest))
+})
+
+
+
+/**
+ *
+ *
+ * TASKS - TOOLKIT OPTIMIZATION
+ *
+`*/
+
+// purge css
+gulp.task('toolkit:purgecss', () => {
+    class TailwindExtractor {
+        static extract(content) {
+            return content.match(/[A-z0-9-:\/]+/g)
+        }
+    }
+
+    gulp
+        .src([config.toolkit.styles.dest + '/toolkit.css'])
+        .pipe(
+            purgecss({
+                content: [ config.dest + '/*.html', config.dest + '/pages/**/*.html' ],
+                extractors: [
+                    {
+                        extractor: TailwindExtractor,
+
+                        // Specify the file extensions to include when scanning for
+                        // class names.
+                        extensions: ['html'],
+                    },
+                ],
+            })
+        )
+        .pipe(gulp.dest(config.toolkit.styles.dest))
 })
 
 
@@ -320,6 +334,7 @@ gulp.task('fabricator:serve', () => {
 })
 
 
+
 /**
  *
  *
@@ -337,5 +352,6 @@ gulp.task('default', ['utility:clean'], () => {
         'fabricator:styles',
         'fabricator:assemble',
         'fabricator:serve',
+        'toolkit:purgecss',
     )
 })
