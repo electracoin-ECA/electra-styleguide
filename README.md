@@ -18,8 +18,7 @@ To understand how to work with this repo, it is important to understand the foll
 The underlying functionality and look of the fabricator styleguide is still a work in progress. Please don't modify the code found in `src/assets/fabricator/` and `src/views/fabricator/`.
 
 ## What is the result?
-Working on this styleguide, you create two important things: 
-- Assets (images, fonts, bundled CSS/JS) which will be used in all HTML/CSS-based user interfaces (`dist/assets/toolkit`). 
+- Assets (images, fonts, bundled CSS) which will be used in all HTML/CSS-based user interfaces (`dist/assets/toolkit`). 
 - Templates which you can drop anywhere in the code (e.g. during the upcoming desktop wallet development)
 
 ## Development

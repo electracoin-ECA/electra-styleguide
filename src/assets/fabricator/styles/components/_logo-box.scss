@@ -5,6 +5,7 @@
 }
 
 .f-logo-box {
+    position: relative;
     width: calc(50% - 20px);
     height: 180px;
     display: flex;
@@ -42,8 +43,24 @@
 
         span {
             display: block;
-            font-weight: 300;
-            font-family: $font--notes;
+            font-weight: 400;
+            font-family: $font--main;
+        }
+
+        pre code {
+            font-family: $font--code;
+            font-weight: 700;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        
+        &:hover {
+            text-decoration: none;
         }
     }
 }

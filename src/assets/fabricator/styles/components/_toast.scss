@@ -1,0 +1,27 @@
+
+.f-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: $color--grey-dark;
+    color: #fff;
+    border-radius: 5px;
+    transition: opacity 500ms ease;
+    oapcity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    padding: 10px 15px;
+    font-weight: 700;
+
+    &[data-f-state--toast=active] {
+        oapcity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .f-icon {
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}

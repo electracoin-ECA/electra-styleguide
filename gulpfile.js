@@ -111,8 +111,6 @@ const config = {
 
 const webpackConfig = require('./webpack.config')(config)
 
-console.log(config.toolkit.styles.tailwind)
-
 /**
  *
  *

@@ -40,6 +40,7 @@ const config = {
 		fullscreenTitle: '[data-f-fullscreen-title]',
 		rulerToggle: '[data-f-toggle-ruler]',
 		resizeToggle: '[data-f-toggle-resize]',
+		toast: '[data-f-toast]',
 	},
 }
 
@@ -189,7 +190,8 @@ const deactivateFullscreenMode = () => {
     fullscreenActive = false
 	setDataAttribute(config.selectors.root, 'data-f-state--fullscreen', '')
     removeParam('detail')
-	setFullscreenContent('', '')
+    document.querySelector(config.selectors.fullscreenMarkup).innerHTML = ''
+    document.querySelector(config.selectors.fullscreenTitle).innerHTML = ''
 }
 
 
@@ -328,6 +330,28 @@ const bindEventHandlers = () => {
 }
 
 /**
+ * show toast 
+ */
+const showToast = (text, icon) => {
+	let iconContent = ''
+	if (icon) {
+		iconContent = `
+			<svg class="f-icon">
+                <use xlink:href="#f-icon-${icon}"" />
+            </svg>
+		`
+	}
+	let toastContent = `${iconContent} ${text}`
+    document.querySelector(config.selectors.toast).innerHTML = toastContent
+
+	setDataAttribute(config.selectors.toast, 'data-f-state--toast', 'active')
+
+	setTimeout(() => {
+		setDataAttribute(config.selectors.toast, 'data-f-state--toast', '')
+	}, 1000);
+}
+
+/**
  * Initializes Styleguide on DOMContentLoaded Event
  */
 const initStyleguide = () => {
@@ -338,7 +362,11 @@ const initStyleguide = () => {
 	})
 
 	document.addEventListener("DOMContentLoaded", () => {
-		new Clipboard('[data-clipboard-trigger]');
+		let clipboard = new Clipboard('[data-clipboard-trigger]');
+		clipboard.on('success', function(e) {
+		    showToast('Copied', 'check')
+		})
+
 	    // get URL params
 	    let key = getParamByName('detail')
 	    if (key && key !== '' && key !== 'null' && key !== 'undefined') activateFullscreenMode(key)
