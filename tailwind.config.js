@@ -47,6 +47,7 @@ var colors = {
 };
 
 var spacing = {
+    '0': '0',
     '1': '3px',
     '2': '5px',
     '3': '8px',
@@ -410,7 +411,8 @@ var customConfig = {
         '1': '24px', // avatar small
         '2': '30px', // logo?
         '4': '42px', // avatar medium
-        '8': '75px', // header
+        '6': '60px', // header small
+        '8': '75px', // header 
         '10': '84px', // avatar large
         '12': '128px', // qr code
         '16': '190px',

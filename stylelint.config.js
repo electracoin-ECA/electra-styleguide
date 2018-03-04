@@ -52,12 +52,6 @@ module.exports = {
         'selector-max-compound-selectors': 3,
         'selector-max-type': 2,
         'selector-max-id': 0,
-        'selector-no-qualifying-type': [
-            true,
-            {
-                'ignore': ['attribute'],
-            },
-        ],
         'selector-no-vendor-prefix': true,
         'at-rule-no-vendor-prefix': true,
         'max-nesting-depth': 3,

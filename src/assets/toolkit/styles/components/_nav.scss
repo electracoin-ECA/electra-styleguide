@@ -1,0 +1,44 @@
+
+.c-nav {
+    @apply w-full text-grey-dark;
+}
+
+.c-nav__title {
+    @apply hidden px-14 pb-6 text-sm font-extra-bold;
+}
+
+.c-nav__items {
+    @apply m-0 p-0 w-full whitespace-no-wrap;
+    list-style: none;
+    overflow-x: scroll;
+
+    li {
+        @apply inline-block py-4 pr-8 text-xs font-regular cursor-pointer;
+
+        &.active {
+            @apply font-semi-bold;
+        }
+    }
+}
+
+@include mappy-bp(md) {
+    .c-nav__title {
+        @apply block;
+    }
+
+    /* stylelint-disable */ 
+    .c-nav__items {
+        @apply m-0 p-0 w-full;
+        list-style: none;
+
+        li {
+            @apply w-full block px-14;
+
+            &.active {
+                background: linear-gradient(to right, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
+            }
+        }
+    }
+    /* stylelint-enable */
+}
+

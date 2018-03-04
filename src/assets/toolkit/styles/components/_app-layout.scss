@@ -7,19 +7,36 @@
     }
 
     &__container {
-        @apply flex w-full flex-grow;
+        @apply flex flex-grow w-full h-full;
 
         > aside {
-            @apply w-auto flex-none;
-            @apply hidden;
-
-            @include mappy-bp(md) {
-                @apply block;
-            }
+            @apply w-full h-auto flex-none;
         }
 
         > main {
-            @apply flex-grow p-14 bg-grey-lightest;
+            @apply flex-grow bg-grey-lightest p-10;
+        }
+    }
+}
+
+@include mappy-bp(max md) {
+    .c-app-layout {
+        &__container {
+            @apply flex-col;
+        }
+    }
+}
+
+@include mappy-bp(md) {
+    .c-app-layout {
+        &__container {
+            > aside {
+                @apply w-auto h-full;
+            }
+
+            > main {
+                @apply p-14;
+            }
         }
     }
 }

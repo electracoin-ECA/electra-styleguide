@@ -1,4 +1,12 @@
 
-.c-sidebar {
-    @apply w-16 h-full p-14 pb-8 border-r;
+@include mappy-bp(max md) {
+    .c-sidebar {
+        @apply w-full h-auto border-b pl-10;
+    }
+}
+
+@include mappy-bp(md) {
+    .c-sidebar {
+        @apply w-16 h-full pt-14 pb-8 border-r;
+    }
 }

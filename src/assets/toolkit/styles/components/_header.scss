@@ -1,13 +1,9 @@
 
 .c-header {
-    @apply h-8 w-full flex border-b items-center px-14;
+    @apply w-full flex border-b items-center;
 
     &__logo {
-        @apply h-full flex items-center flex-none mr-12;
-
-        img {
-            height: 40%;
-        }
+        @apply h-full flex items-center flex-none;
     }
 
     &__content {
@@ -16,5 +12,33 @@
 
     &__user {
         @apply flex-none;
+    }
+}
+
+@include mappy-bp(max md) {
+    .c-header {
+        @apply h-6 px-10;
+
+        &__logo {
+            @apply mr-10;
+
+            img {
+                height: 50%;
+            }
+        }
+    }
+}
+
+@include mappy-bp(md) {
+    .c-header {
+        @apply h-8 px-14;
+
+        &__logo {
+            @apply mr-14;
+
+            img {
+                height: 40%;
+            }
+        }
     }
 }
