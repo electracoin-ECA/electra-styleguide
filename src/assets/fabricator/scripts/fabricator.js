@@ -5,8 +5,8 @@ import Split from 'split.js'
 import store from 'store'
 import Clipboard from 'clipboard'
 
-const tailwindConfig = require('../../../../tailwind.config.js')
-console.log(tailwindConfig)
+// const tailwindConfig = require('../../../../tailwind.config.js')
+// console.log(tailwindConfig)
 
 let storageKey = 'aw765dvawdgaw56'
 let storageKeyResize = `${storageKey}:show-resize`
