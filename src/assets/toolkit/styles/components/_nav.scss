@@ -13,7 +13,11 @@
     overflow-x: scroll;
 
     li {
-        @apply inline-block py-4 pr-8 text-xs font-regular cursor-pointer;
+        @apply inline-block;
+    }
+
+    li a {
+        @apply block py-4 pr-8 text-xs font-regular cursor-pointer no-underline;
 
         &.active {
             @apply font-semi-bold;
@@ -32,7 +36,11 @@
         list-style: none;
 
         li {
-            @apply w-full block px-14;
+            @apply block;
+        }
+
+        li a {
+            @apply w-full px-14;
 
             &.active {
                 background: linear-gradient(to right, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
@@ -41,4 +49,3 @@
     }
     /* stylelint-enable */
 }
-
