@@ -17,17 +17,28 @@
     }
 
     li a {
-        @apply block py-4 pr-8 text-xs font-regular cursor-pointer no-underline;
+        @apply block py-4 pr-8 text-xs font-regular cursor-pointer no-underline flex items-center;
 
         &.active {
             @apply font-semi-bold;
         }
+
+        &:visited,
+        &:active {
+            font-weight: inherit;
+            color: inherit;
+        }
+    }
+
+    .c-icon {
+        @apply mr-4 flex-none;
     }
 }
 
 @include mappy-bp(md) {
     .c-nav__title {
         @apply block;
+        overflow-x: hidden;
     }
 
     /* stylelint-disable */ 

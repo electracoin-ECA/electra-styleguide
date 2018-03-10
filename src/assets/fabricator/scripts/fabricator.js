@@ -355,13 +355,7 @@ const showToast = (text, icon) => {
  * Initializes Styleguide on DOMContentLoaded Event
  */
 const initStyleguide = () => {
-	initProgressNav({
-		nav: '.f-nav--progress',
-		navMarker: '.nav-marker',
-		scrollContainer: '[data-f-jump-container]'
-	})
-
-	document.addEventListener("DOMContentLoaded", () => {
+	document.addEventListener("DOMContentLoaded", () => {		
 		let clipboard = new Clipboard('[data-clipboard-trigger]');
 		clipboard.on('success', function(e) {
 		    showToast('Copied', 'check')
@@ -374,6 +368,12 @@ const initStyleguide = () => {
 		fabricator.dom.resizeToggle.checked = fullscreenResizeActive
 		if (fullscreenResizeActive) activateFullscreenResize()
 		fabricator.dom.rulerToggle.checked = fullscreenRulerActive
+	
+		initProgressNav({
+			nav: '.f-nav--progress',
+			navMarker: '.nav-marker',
+			scrollContainer: '[data-f-jump-container]'
+		})
 	})
     Prism.hooks.add('before-highlight',  env => {
 		var element = env.element

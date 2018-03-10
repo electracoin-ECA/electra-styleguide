@@ -1,0 +1,17 @@
+
+.c-icon {
+    @apply w-icon-md h-icon-md inline-block text-grey-dark;
+    fill: currentColor;
+
+    &--size-xs {
+        @apply w-icon-xs h-icon-xs;
+    }
+
+    &--size-sm {
+        @apply w-icon-sm h-icon-sm;
+    }
+
+    &--size-lg {
+        @apply w-icon-lg h-icon-lg;
+    }
+}

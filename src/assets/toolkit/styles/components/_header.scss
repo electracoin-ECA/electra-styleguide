@@ -7,7 +7,7 @@
     }
 
     &__content {
-        @apply flex-1;
+        @apply flex-1 flex items-center;
     }
 
     &__user {

@@ -379,13 +379,21 @@ var customConfig = {
         '1/6': '16.66667%',
         'golden-small': '38.2%',
         'golden-large': '61.8%',
-        '1': '24px',
-        '2': '30px',
+        'icon-xs': '12px',
+        'icon-sm': '16px',
+        'icon-md': '19px',
+        'icon-lg': '28px',
+        '1px': '1px',
+        '1': '21px',
+        '2': '24px',
+        '3': '30px',
         '4': '42px',
+        '6': '60px',
         '8': '75px',
         '10': '84px',
         '12': '128px',
         '16': '190px',
+        '24': '360px',
         'full': '100%',
         'screen': '100vw',
     },
@@ -408,14 +416,20 @@ var customConfig = {
 
     height: {
         'auto': 'auto',
-        '1': '24px', // avatar small
-        '2': '30px', // logo?
-        '4': '42px', // avatar medium
-        '6': '60px', // header small
-        '8': '75px', // header 
-        '10': '84px', // avatar large
-        '12': '128px', // qr code
+        '1px': '1px',
+        '1': '21px',
+        '2': '24px',
+        '3': '30px',
+        '4': '42px',
+        '6': '60px',
+        '8': '75px',
+        '10': '84px',
+        '12': '128px',
         '16': '190px',
+        'icon-xs': '12px',
+        'icon-sm': '16px',
+        'icon-md': '19px',
+        'icon-lg': '28px',
         'full': '100%',
         'screen': '100vh',
     },

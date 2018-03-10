@@ -6,12 +6,17 @@
  *
 `*/
 
-// utilities
-const gulp = require('gulp')
+// utility
 const del = require('del')
+const fs = require('fs')
+const gulp = require('gulp')
+const path = require('path')
+const through = require('through2')
 const gutil = require('gulp-util')
 const gulpif = require('gulp-if')
 const rename = require('gulp-rename')
+const newfile = require('gulp-file')
+const prompt = require('gulp-prompt')
 const runSequence = require('run-sequence')
 const assemble = require('fabricator-assemble')
 const browserSync = require('browser-sync')
@@ -27,6 +32,7 @@ const csso = require('gulp-csso')
 const purgecss = require('gulp-purgecss')
 const postcss = require('gulp-postcss')
 const objectfit = require('postcss-object-fit-images')
+const criticalSplit = require('postcss-critical-split')
 
 // image processing
 const imagemin = require('gulp-imagemin')
@@ -43,70 +49,198 @@ const webpack = require('webpack')
  *
 `*/
 
+const mainPaths = {
+    src: {
+        assets: './src/assets',
+        views: './src/views',
+        materials: './src/materials',
+    },
+    dest: {
+        assets: './dist/assets',
+        views: './dist/views',
+    },
+}
+
 const config = {
     dev: gutil.env.dev,
     fabricator: {
         templates: {
-            layouts: 'src/views/fabricator/*',
-            partials: 'src/views/fabricator/partials/*',
+            layouts: `${mainPaths.src.views}/fabricator/*`,
+            partials: `${mainPaths.src.views}/fabricator/partials/*`,
             views: [
-                'src/views/**/*', 
-                '!src/views/+(fabricator)/**'
-            ]
+                `${mainPaths.src.views}/**/*`,
+                `!${mainPaths.src.views}/+(fabricator)/**`,
+            ],
         },
         styles: {
-            src: 'src/assets/fabricator/styles/fabricator.scss',
-            dest: 'dist/assets/fabricator/styles',
-            watch: 'src/assets/fabricator/styles/**/*.scss',
+            src: `${mainPaths.src.assets}/fabricator/styles/fabricator.scss`,
+            dest: `${mainPaths.dest.assets}/fabricator/styles`,
+            watch: `${mainPaths.src.assets}/fabricator/styles/**/*.scss`,
         },
         scripts: {
-            src: './src/assets/fabricator/scripts/fabricator.js',
-            dest: 'dist/assets/fabricator/scripts',
-            watch: 'src/assets/fabricator/scripts/**/*',
+            src: `${mainPaths.src.assets}/fabricator/scripts/fabricator.js`,
+            dest: `${mainPaths.dest.assets}/fabricator/scripts`,
+            watch: `${mainPaths.src.assets}/fabricator/scripts/**/*`,
         },
     },
     toolkit: {
         styles: {
             browsers: 'last 2 versions',
-            src: 'src/assets/toolkit/styles/toolkit.scss',
+            src: `${mainPaths.src.assets}/toolkit/styles/toolkit.scss`,
             tailwind: './tailwind.config.js',
-            dest: 'dist/assets/toolkit/styles',
+            dest: `${mainPaths.dest.assets}/toolkit/styles`,
             watch: [
-                'src/assets/toolkit/styles/**/*.scss',
+                `${mainPaths.src.assets}/toolkit/styles/**/*.scss`,
                 './tailwind.config.js',
             ],
             lint: [
-                'src/assets/toolkit/styles/**/*.scss',
+                `${mainPaths.src.assets}/toolkit/styles/**/*.scss`,
             ],
         },
         scripts: {
-            src: './src/assets/toolkit/scripts/toolkit.js',
-            dest: 'dist/assets/toolkit/scripts',
-            watch: 'src/assets/toolkit/scripts/**/*',
+            src: [
+                `${mainPaths.src.assets}/toolkit/scripts/toolkit-header.js`,
+                `${mainPaths.src.assets}/toolkit/scripts/toolkit-footer.js`,
+            ],
+            srcHeader: `${mainPaths.src.assets}/toolkit/scripts/toolkit-header.js`,
+            srcFooter: `${mainPaths.src.assets}/toolkit/scripts/toolkit-footer.js`,
+            srcFolder: `${mainPaths.src.assets}/toolkit/scripts`,
+            dest: `${mainPaths.dest.assets}/toolkit/scripts`,
+            watch: `${mainPaths.src.assets}/toolkit/scripts/**/*`,
         },
         images: {
-            src: 'src/assets/toolkit/images/**/*',
-            dest: 'dist/assets/toolkit/images',
-            watch: 'src/assets/toolkit/images/**/*',
+            src: `${mainPaths.src.assets}/toolkit/images/**/*`,
+            dest: `${mainPaths.dest.assets}/toolkit/images`,
         },
-        favicon: {
-            src: 'src/favicon.ico',
-            dest: 'dist/assets/toolkit/images/favicons'
+        favicons: {
+            src: `${mainPaths.src.assets}/toolkit/favicons/*`,
+            dest: `${mainPaths.dest.assets}/toolkit/favicons`,
         },
         icons: {
-            src: 'src/assets/toolkit/images/icons/sprite.svg'
+            src: [
+                `${mainPaths.src.assets}/toolkit/icons/fa-brands.svg`,
+                `${mainPaths.src.assets}/toolkit/icons/fa-regular.svg`,
+                `${mainPaths.src.assets}/toolkit/icons/fa-solid.svg`,
+            ],
+            dest: `${mainPaths.dest.assets}/toolkit/icons`,
+            includes: './icons.config.json',
+        },
+        htaccess: {
+            src: [
+                'src/.htaccess',
+                'src/.htpasswd'
+            ],
         },
         fonts: {
-            src: ['src/assets/toolkit/fonts/**/*'],
-            dest: 'dist/assets/toolkit/fonts',
-            watch: 'src/assets/toolkit/fonts/**/*',
+            src: `${mainPaths.src.assets}/toolkit/fonts/**/*`,
+            dest: `${mainPaths.dest.assets}/toolkit/fonts`,
         },
         materials: {
-            src: 'src/materials/**/*',
+            src: `${mainPaths.src.materials}/**/*`,
             watch: 'src/**/*.{html,md,json,yml}',
         },
     },
     dest: 'dist',
+}
+
+
+
+/**
+ *
+ *
+ * UTILITY
+ *
+`*/
+
+// Prevent Gulp from shutting down on errors
+function swallowError(error) {
+    // If you want details of the error in the console
+    console.log(error.toString())
+    this.emit('end')
+}
+
+const generateIconSprite = spriteName => {
+    spriteName = spriteName || 'icon-sprite.svg'
+    let bundleString = ''
+    let lastFile
+    return through.obj(function(file, encoding, callback) {
+        lastFile = file
+        let fileAsString
+        if (file.isBuffer()) {
+            fileAsString = file.contents.toString(encoding).trim()
+        } else {
+            throw new Error('Only buffers are supported')
+        }
+        bundleString += fileAsString
+        callback()
+    }, function(callback) {
+        let symbols = []
+        const iconIncludes = require(config.toolkit.icons.includes)
+        bundleString.split('<symbol id="').map((piece, index) => {
+            iconIncludes.map(icon => {
+                if (piece.indexOf(`${icon}"`) >= 0) symbols.push(`<symbol id="${piece}`)
+            })
+        })
+        let formattedSymbols = symbols.join('').replace('\n', '')
+        let iconSprite = `<svg xmlns="http://www.w3.org/2000/svg" style="display: none">${formattedSymbols}</svg>`
+        const file = lastFile.clone()
+        file.contents = new Buffer(iconSprite)
+        file.path = path.join(lastFile.base, spriteName)
+        this.push(file)
+        callback()
+    })
+}
+
+const getTemplates = {
+    material: () =>
+`---
+notes: |
+    @todo
+---
+
+`,
+    style: (selector)  =>
+`
+${selector} {
+
+}
+
+`
+}
+
+const getFileTarget = (context, materialType, materialName) => {
+    return new Promise((resolve, reject) => {
+        fs.readdir(`${mainPaths.src.materials}/`, (error, folders) => {
+            if (error) reject(error)
+            let targetFolder = ''
+            let targetName = ''
+            folders.forEach((folder, index) => {
+                if (folder.indexOf(materialType) > -1) targetFolder = folder
+            })
+            if (targetFolder !== '' && context === 'material') {
+                fs.readdir(`${mainPaths.src.materials}/${targetFolder}/`, (err, files) => {
+                    let targetIndex = 1
+                    if (files.length > 0) {
+                        files.forEach((file, index) => {
+                            if (index === files.length - 1) {
+                                targetIndex = parseInt(file.substr(0, 2)) + 1
+                                let indexPrefix = targetIndex.toString()
+                                if (indexPrefix.length === 1) indexPrefix = `0${indexPrefix}`
+                                targetName = `${indexPrefix}-${materialName}.html`
+                                resolve({targetName, targetFolder})
+                            }
+                        })
+                    }
+                })
+            } else if (targetFolder !== '' && context === 'style') {
+                targetName = `_${materialName}.scss`
+                targetFolder = `${materialType}s`
+                resolve({targetName, targetFolder})
+            } else {
+                reject('No folder for material type found')
+            }
+        })
+    })
 }
 
 const webpackConfig = require('./webpack.config')(config)
@@ -163,13 +297,9 @@ gulp.task('toolkit:styles:process', () => {
             includePaths: './node_modules',
         }).on('error', sass.logError))
         .pipe(postcss([
-            tailwindcss('./tailwind.config.js'),
+            tailwindcss(config.toolkit.styles.tailwind),
             objectfit(),
-        ]).on('error', function(error) {
-            // if you want details of the error in the console
-            console.log(error.toString())
-            this.emit('end')
-        }))
+        ]).on('error', swallowError))
         .pipe(prefix(config.toolkit.styles.browsers))
         .pipe(gulpif(!config.dev, csso()))
         .pipe(gulpif(config.dev, sourcemaps.write()))
@@ -188,8 +318,28 @@ gulp.task('toolkit:styles:lint', () => {
         }))
 })
 
-// style optimization 
-// gulp.task('toolkit:styles', ['toolkit:styles:process'], () => {
+// generate critical css
+gulp.task('toolkit:styles:critical', () => {
+    gulp.src(config.toolkit.styles.src)
+    .pipe(gulpif(config.dev, sourcemaps.init()))
+    .pipe(sass({
+        includePaths: './node_modules',
+    }).on('error', sass.logError))
+    // (Remove) comment to enable/disable TailwindCSS
+    .pipe(postcss([
+        tailwindcss(config.toolkit.styles.tailwind),
+        criticalSplit({ 'output': 'critical' }),
+        objectfit(),
+    ]).on('error', swallowError))
+    .pipe(prefix(config.toolkit.styles.browsers))
+    .pipe(gulpif(!config.dev, csso()))
+    .pipe(rename('critical.css'))
+    .pipe(gulpif(config.dev, sourcemaps.write()))
+    .pipe(gulp.dest(config.toolkit.styles.dest))
+    .pipe(gulpif(config.dev, reload({ stream: true })))
+})
+
+// style tasks
 gulp.task('toolkit:styles', ['toolkit:styles:lint', 'toolkit:styles:process'])
 
 /**
@@ -200,21 +350,21 @@ gulp.task('toolkit:styles', ['toolkit:styles:lint', 'toolkit:styles:process'])
 `*/
 
 // copy favicon
-gulp.task('toolkit:favicon', () => {
+gulp.task('toolkit:favicons', () => {
     return gulp
-        .src(config.toolkit.favicon.src)
-        .pipe(gulp.dest(config.toolkit.favicon.dest))
+        .src(config.toolkit.favicons.src)
+        .pipe(gulp.dest(config.toolkit.favicons.dest))
 })
 
-// copy icon sprite
-// gulp.task('toolkit:icons', () => {
-//     return gulp
-//         .src(config.toolkit.icons.src)
-//         .pipe(gulp.dest(config.dest))
-// })
+// generate icon sprite
+gulp.task('toolkit:icons', () => {
+    return gulp.src(config.toolkit.icons.src)
+        .pipe(generateIconSprite('icon-sprite.svg'))
+        .pipe(gulp.dest(config.toolkit.icons.dest))
+})
 
 // image optimization
-gulp.task('toolkit:images', ['toolkit:favicon'], () => {
+gulp.task('toolkit:images', () => {
     return gulp
         .src(config.toolkit.images.src)
         // Don't run svgo as it destroys teaser icons
@@ -224,6 +374,7 @@ gulp.task('toolkit:images', ['toolkit:favicon'], () => {
         ]))
         .pipe(gulp.dest(config.toolkit.images.dest))
 })
+
 
 
 /**
@@ -249,8 +400,14 @@ gulp.task('toolkit:fonts', () => {
  *
 `*/
 
+// Copy ht protection for preview to dist (luckily, browser-sync webserver is not affected by this)
+gulp.task('toolkit:htaccess', () => {
+    return gulp.src(config.toolkit.htaccess.src)
+    .pipe(gulp.dest(config.dest))
+})
+
 // purge css
-gulp.task('toolkit:purgecss', () => {
+gulp.task('toolkit:styles:purgecss', () => {
     class TailwindExtractor {
         static extract(content) {
             return content.match(/[A-z0-9-:\/]+/g)
@@ -261,14 +418,19 @@ gulp.task('toolkit:purgecss', () => {
         .src([config.toolkit.styles.dest + '/toolkit.css'])
         .pipe(
             purgecss({
-                content: [ config.dest + '/*.html', config.dest + '/pages/**/*.html' ],
+                content: [
+                    config.dest + '/*.html',
+                    config.dest + '/pages/**/*.html',
+                    config.dest + '/assets/toolkit/scripts/toolkit-footer.js',
+                    config.dest + '/assets/toolkit/scripts/toolkit-header.js',
+                ],
                 extractors: [
                     {
                         extractor: TailwindExtractor,
 
                         // Specify the file extensions to include when scanning for
                         // class names.
-                        extensions: ['html'],
+                        extensions: ['js', 'html'],
                     },
                 ],
             })
@@ -325,8 +487,11 @@ gulp.task('fabricator:serve', () => {
 
   gulp.watch([config.toolkit.scripts.watch, config.fabricator.scripts.watch], ['webpack'])
   gulp.watch(config.toolkit.styles.watch, ['toolkit:styles'])
-  gulp.watch(config.toolkit.images.watch, ['toolkit:images'])
-  gulp.watch(config.toolkit.fonts.watch, ['toolkit:fonts'])
+  gulp.watch(config.toolkit.images.src, ['toolkit:images'])
+  gulp.watch(config.toolkit.favicons.src, ['toolkit:favicons'])
+  gulp.watch(config.toolkit.icons.includes, ['toolkit:icons'])
+  gulp.watch(config.toolkit.fonts.src, ['toolkit:fonts'])
+  gulp.watch(config.toolkit.htaccess.src, ['toolkit:htaccess'])
   gulp.watch(config.toolkit.materials.watch, ['fabricator:assemble'])
   gulp.watch(config.fabricator.styles.watch, ['fabricator:styles'])
 })
@@ -336,20 +501,197 @@ gulp.task('fabricator:serve', () => {
 /**
  *
  *
- * TASK SEQUENCE
+ * TASKS - SCAFFOLDING
  *
 `*/
 
-// default build task
-gulp.task('default', ['utility:clean'], () => {
+// generate material files
+gulp.task('scaffold:material', () => {
+    return gulp
+        .src('package.json', { read: false })
+        .pipe(
+            prompt.prompt([
+                {
+                    type:'list',
+                    name:'type',
+                    message:'Material type?',
+                    choices: ['element','object','component'],
+                    pageSize:'3'
+                },
+                {
+                    type: 'input',
+                    name: 'title',
+                    message: 'Component name (like this: example-component): '
+                },
+                {
+                    type:'list',
+                    name:'style',
+                    message:'Generate sass file?',
+                    choices: ['yes','no'],
+                    pageSize:'1'
+                },
+            ], function(res){
+                if (res.title !== '') {
+                    const materialType = res.type
+                    const materialName = res.title
+                    const createStyle = res.style === 'yes'
+
+                    getFileTarget('material', materialType, materialName)
+                        .then(({ targetName, targetFolder }) => {
+                            // create material file
+                            const materialContents = getTemplates.material()
+                            newfile(targetName, materialContents)
+                                .pipe(gulp.dest(`src/materials/${targetFolder}`))
+                        })
+                        .catch(error => {
+                            console.log(error)
+                        })
+
+                    if (createStyle) {
+                        // create sass file
+                        getFileTarget('style', materialType, materialName)
+                            .then(({ targetName, targetFolder }) => {
+                                let classPrefix = ''
+                                switch (materialType) {
+                                    case 'element':
+                                        classPrefix = ''
+                                        break
+                                    case 'object':
+                                        classPrefix = 'o-'
+                                        break
+                                    case 'component':
+                                        classPrefix = 'c-'
+                                        break
+                                    default:
+                                        classPrefix = ''
+                                        break
+                                }
+
+                                let selector = ''
+                                let addSelector = true
+                                if (classPrefix === '') addSelector = false
+                                selector = classPrefix !== '' ? '.' + classPrefix + materialName : materialName
+                                if (materialType === 'element') {
+                                    switch (materialName) {
+                                        case 'heading':
+                                        case 'headings':
+                                        case 'headline':
+                                        case 'headlines':
+                                            selector = 'h1'
+                                            break
+                                        case 'paragraph':
+                                        case 'paragraphs':
+                                            selector = 'p'
+                                            break
+                                        case 'link':
+                                        case 'links':
+                                        case 'anchor':
+                                            selector = 'a'
+                                            break
+                                        case 'horizontal-ruler':
+                                            selector = 'hr'
+                                            break
+                                        case 'list':
+                                        case 'lists':
+                                            selector = 'ul'
+                                            break
+                                        case 'image':
+                                        case 'images':
+                                            selector = 'img'
+                                            break
+                                    }
+                                }
+                                const sassContents = getTemplates.style(selector)
+
+                                newfile(targetName, sassContents)
+                                    .pipe(gulp.dest(`src/assets/toolkit/styles/${targetFolder}`))
+                            })
+                            .catch(error => {
+                                console.log(error)
+                            })
+                    }
+                }
+            })
+        )
+})
+
+// generate scripts
+gulp.task('scaffold:script', () => {
+    return gulp
+        .src('package.json', { read: false })
+        .pipe(
+            prompt.prompt([
+                {
+                    type: 'input',
+                    name:'title',
+                    message:'Name:'
+                },
+                {
+                    type:'list',
+                    name:'location',
+                    message:'Import location:',
+                    choices: ['footer','header'],
+                    pageSize:'2'
+                },
+            ], function(res){
+                if (res.title !== '') {
+                    // create script file
+                    const scriptContents = ``
+                    const scriptName = `${res.title}.js`
+                    const scriptTarget = `${config.toolkit.scripts.scrFolder}/${res.location}`
+                    newfile(scriptName, scriptContents)
+                        .pipe(gulp.dest(scriptTarget))
+
+                    fs.readFile(`${config.toolkit.scripts.scrFolder}/toolkit-${res.location}.js`, "utf8", (err, data) => {
+                        const newContents = `${data}
+import '${res.location}/${res.title}'`
+                        newfile(`toolkit-${res.location}.js`, newContents)
+                            .pipe(gulp.dest(`${config.toolkit.scripts.scrFolder}`))
+                    })
+                }
+            })
+        )
+})
+
+
+
+/**
+ *
+ *
+ * TASK SEQUENCES
+ *
+`*/
+
+// tasks
+gulp.task('develop', ['utility:clean'], () => {
     runSequence(
         'webpack',
         'toolkit:styles',
         'toolkit:images',
+        'toolkit:favicons',
         'toolkit:fonts',
+        'toolkit:icons',
+        'toolkit:htaccess',
         'fabricator:styles',
         'fabricator:assemble',
         'fabricator:serve',
-        'toolkit:purgecss',
     )
 })
+
+gulp.task('build', ['utility:clean'], () => {
+    runSequence(
+        'webpack',
+        'toolkit:styles',
+        'toolkit:images',
+        'toolkit:favicons',
+        'toolkit:fonts',
+        'toolkit:icons',
+        'fabricator:styles',
+        'fabricator:assemble',
+        'toolkit:htaccess',
+        'toolkit:styles:purgecss',
+        'toolkit:styles:critical',
+    )
+})
+
+gulp.task('default', ['develop'])

@@ -2,16 +2,43 @@
 notes: |
     - Global view navigation. 
     - Is used in sidebar as well as (not yet existing) mobile nav
-    - Add class `active` to the active nav item (li)
-    - TODO: Add icons
+    - Add class `active` to the active nav item
 ---
 
 <nav class="c-nav">
     <div class="c-nav__title">Navigation</div>
     <ul class="c-nav__items">
-        <li><a href="">Overview</a></li>
-        <li><a href="">Payments</a></li>
-        <li><a href="" class="active">Transactions</a></li>
-        <li><a href="">Address book</a></li>
+        <li>
+            <a href="">
+                <svg class="c-icon c-icon--size-xs">
+                    <use xlink:href="#home" />
+                </svg>
+                Overview
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <svg class="c-icon c-icon--size-xs">
+                    <use xlink:href="#handshake" />
+                </svg>
+                Payments
+            </a>
+        </li>
+        <li>
+            <a href="" class="active">
+                <svg class="c-icon c-icon--size-xs">
+                    <use xlink:href="#exchange-alt" />
+                </svg>
+                Transactions
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <svg class="c-icon c-icon--size-xs">
+                    <use xlink:href="#address-book" />
+                </svg>
+                Address book
+            </a>
+        </li>
     </ul>
 </nav>

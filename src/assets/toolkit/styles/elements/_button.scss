@@ -2,10 +2,10 @@
 button,
 input[type=button],
 input[type=submit] {
-    @apply .px-13;
-    @apply .py-3;
+    @apply .px-10;
+    @apply .py-4;
     @apply .font-bold;
-    @apply .text-xs;
+    @apply .text-sm;
     @apply .text-white;
     @apply .text-center;
     @apply .bg-purple;

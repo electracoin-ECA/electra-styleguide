@@ -1,0 +1,27 @@
+
+.c-wallet-info {
+    @apply relative flex items-center pr-4;
+
+    &__icon {
+        @apply cursor-pointer;
+        transition: color $transition-time--medium ease;
+    }
+
+    &__card {
+        @apply absolute pin-t ml-10;
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity $transition-time--medium ease;
+    }
+}
+
+.c-wallet-info:hover .c-wallet-info__card {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
+.c-wallet-info:hover .c-wallet-info__icon {
+    @apply text-purple;
+}
