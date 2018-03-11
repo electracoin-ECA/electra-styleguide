@@ -1,0 +1,14 @@
+
+.c-view {
+    &__header {
+        @apply flex justify-between items-center;
+    }
+
+    &__subtitle {
+        @apply block mt-2 pb-2 mb-6 border-b border-grey-lighter;
+    }
+
+    &__content {
+        @apply block mt-4;
+    }
+}

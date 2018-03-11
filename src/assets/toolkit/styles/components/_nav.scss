@@ -17,16 +17,16 @@
     }
 
     li a {
-        @apply block py-4 pr-8 text-xs font-regular cursor-pointer no-underline flex items-center;
+        @apply block py-4 pr-8 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-dark;
 
-        &.active {
-            @apply font-semi-bold;
+        &.active,
+        &:active {
+            @apply font-semi-bold text-grey-dark;
         }
 
         &:visited,
-        &:active {
-            font-weight: inherit;
-            color: inherit;
+        &:focus {
+            @apply text-grey-dark;
         }
     }
 

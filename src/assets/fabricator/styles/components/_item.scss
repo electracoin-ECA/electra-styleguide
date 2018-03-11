@@ -90,7 +90,6 @@ $item__control_icon-color: #222;
 
 	&__code {
 		position: relative;
-		z-index: 0;
 		padding: $whitespace-scale * $whitespace-base * 0.4 $whitespace-scale * $whitespace-base * 0.6;
 		overflow: auto;
 		background: $item__code_background-color;

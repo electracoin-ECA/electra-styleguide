@@ -1,13 +1,17 @@
 [
-    "info-circle",
-    "home",
-    "handshake",
-    "exchange-alt",
     "address-book",
+    "angle-double-right",
     "caret-down",
     "clone",
+    "clipboard",
     "cog",
     "calendar-alt",
     "clock",
-    "angle-double-right"
+    "exchange-alt",
+    "home",
+    "handshake",
+    "info-circle",
+    "pencil-alt",
+    "plus",
+    "qrcode"
 ]

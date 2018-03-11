@@ -1,6 +1,6 @@
 {
-  "name": "toolbox",
-  "version": "0.1.0",
+  "name": "electra-assets",
+  "version": "0.2.0",
   "description": "Living styleguide and pattern library",
   "scripts": {
     "start": "npm run dev",
