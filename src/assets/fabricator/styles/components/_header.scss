@@ -23,6 +23,7 @@ $header__button_border-color: $color--grey-light;
 	justify-content: space-between;
 	align-items: center;
 	overflow: hidden;
+	z-index: 2;
 
 	&__title {
 		position: absolute;

@@ -1,7 +1,6 @@
 import { getParamByName, addParam, removeParam, getFlaggedString, toggleDataAttribute, setDataAttribute } from './utility'
 import { initProgressNav } from './progress-nav'
 import jump from './jump'
-import Split from 'split.js'
 import store from 'store'
 import Clipboard from 'clipboard'
 
@@ -9,11 +8,9 @@ import Clipboard from 'clipboard'
 // console.log(tailwindConfig)
 
 let storageKey = 'aw765dvawdgaw56'
-let storageKeyResize = `${storageKey}:show-resize`
 let storageKeyRuler = `${storageKey}:show-ruler`
 
 let fullscreenActive = false
-let fullscreenResizeActive = store.get(storageKeyResize) === true
 let fullscreenRulerActive = store.get(storageKeyRuler) === true
 
 require('./prism')
@@ -39,7 +36,6 @@ const config = {
 		fullscreenMarkup: '[data-f-fullscreen-markup]',
 		fullscreenTitle: '[data-f-fullscreen-title]',
 		rulerToggle: '[data-f-toggle-ruler]',
-		resizeToggle: '[data-f-toggle-resize]',
 		toast: '[data-f-toast]',
 	},
 }
@@ -76,7 +72,6 @@ fabricator.dom = {
 	navItems: document.querySelectorAll(config.selectors.navItems),
 	navCategoryItems: document.querySelectorAll(config.selectors.navCategoryItems),
 	navToggle: document.querySelector(config.selectors.navToggle),
-	resizeToggle: document.querySelector(config.selectors.resizeToggle),
 	rulerToggle: document.querySelector(config.selectors.rulerToggle),
 }
 
@@ -92,7 +87,7 @@ const setActiveItem = () => {
 	const getParsedItems = () => {
 
 		var items = [],
-			id, 
+			id,
 			href
 
 		for (var i = fabricator.dom.navItems.length - 1; i >= 0; i--) {
@@ -194,39 +189,6 @@ const deactivateFullscreenMode = () => {
     document.querySelector(config.selectors.fullscreenTitle).innerHTML = ''
 }
 
-
-/**
- * activate resize controls in fullscreen view
- */
-const activateFullscreenResize = () => {
-	setDataAttribute(config.selectors.root, 'data-f-state--fullscreen-resize', 'active')
-	store.set(storageKeyResize, true)
-	splitInstance = Split(['[data-f-fullscreen-markup]', '[data-f-fullscreen-markup-negative]'], {
-	    sizes: [100, 0],
-	    minSize: 50,
-	    snapOffset: 0,
-	    gutterSize: 30
-	})
-
-	let gutter = document.querySelector('.gutter')
-	if (gutter) {
-		gutter.innerHTML = `
-			<svg>
-                <use xlink:href="#f-icon-resize" />
-            </svg>
-		`
-	}
-}
-
-/**
- * deactivate resize controls in fullscreen view
- */
-const destroyFullscreenResize = () => {
-	setDataAttribute(config.selectors.root, 'data-f-state--fullscreen-resize', '')
-	store.set(storageKeyResize, false)
-	if (splitInstance !== null) splitInstance.destroy()
-}
-
 /**
  * activate ruler in fullscreen view
  */
@@ -238,7 +200,7 @@ const activateFullscreenRuler = () => {
         container: document.querySelector(config.selectors.fullscreenMarkup),// reference to DOM element to apply rulers on
         rulerHeight: 35, // thickness of ruler
         fontFamily: 'monospace',// font for points
-        fontSize: '11px', 
+        fontSize: '11px',
         trackerColor: 'red',
         strokeStyle: '#999',
         lineWidth: 1,
@@ -291,7 +253,7 @@ const bindEventHandlers = () => {
 	var options = fabricator.options
 
     for (let fullscreenToggle of document.querySelectorAll(config.selectors.fullscreenOpen)) {
-        fullscreenToggle.addEventListener('click', event => { 
+        fullscreenToggle.addEventListener('click', event => {
         	let attrName = 'data-f-fullscreen-key'
 			let key = event.target.getAttribute(attrName) || event.target.parentElement.getAttribute(attrName)
         	activateFullscreenMode(key)
@@ -308,21 +270,17 @@ const bindEventHandlers = () => {
 	for (let item of fabricator.dom.navItems) {
 		item.addEventListener('click', event => {
 			toggleNav()
-			if (event.target.dataset.jumpTarget) { jumpToKey(event.target.dataset.jumpTarget) }				
+			if (event.target.dataset.jumpTarget) { jumpToKey(event.target.dataset.jumpTarget) }
 		})
 	}
 	for (let item of fabricator.dom.navCategoryItems) {
 		item.addEventListener('click', event => {
 			toggleNav()
-			if (event.target.dataset.jumpTarget) { jumpToKey(event.target.dataset.jumpTarget) }			
+			if (event.target.dataset.jumpTarget) { jumpToKey(event.target.dataset.jumpTarget) }
 		})
 	}
 
 	fabricator.dom.navToggle.addEventListener('click', toggleNav)
-	fabricator.dom.resizeToggle.addEventListener('change', event => {
-		if (event.target.checked) activateFullscreenResize()
-		else destroyFullscreenResize()
-	})
 	fabricator.dom.rulerToggle.addEventListener('change', event => {
 		if (event.target.checked) activateFullscreenRuler()
 		else destroyFullscreenRuler()
@@ -330,7 +288,7 @@ const bindEventHandlers = () => {
 }
 
 /**
- * show toast 
+ * show toast
  */
 const showToast = (text, icon) => {
 	let iconContent = ''
@@ -355,7 +313,8 @@ const showToast = (text, icon) => {
  * Initializes Styleguide on DOMContentLoaded Event
  */
 const initStyleguide = () => {
-	document.addEventListener("DOMContentLoaded", () => {		
+
+	document.addEventListener("DOMContentLoaded", () => {
 		let clipboard = new Clipboard('[data-clipboard-trigger]');
 		clipboard.on('success', function(e) {
 		    showToast('Copied', 'check')
@@ -365,10 +324,8 @@ const initStyleguide = () => {
 	    let key = getParamByName('detail')
 	    if (key && key !== '' && key !== 'null' && key !== 'undefined') activateFullscreenMode(key)
 
-		fabricator.dom.resizeToggle.checked = fullscreenResizeActive
-		if (fullscreenResizeActive) activateFullscreenResize()
 		fabricator.dom.rulerToggle.checked = fullscreenRulerActive
-	
+		
 		initProgressNav({
 			nav: '.f-nav--progress',
 			navMarker: '.nav-marker',

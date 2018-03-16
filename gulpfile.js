@@ -14,6 +14,7 @@ const path = require('path')
 const through = require('through2')
 const gutil = require('gulp-util')
 const gulpif = require('gulp-if')
+const watch = require('gulp-watch')
 const rename = require('gulp-rename')
 const newfile = require('gulp-file')
 const prompt = require('gulp-prompt')
@@ -32,7 +33,6 @@ const csso = require('gulp-csso')
 const purgecss = require('gulp-purgecss')
 const postcss = require('gulp-postcss')
 const objectfit = require('postcss-object-fit-images')
-const criticalSplit = require('postcss-critical-split')
 
 // image processing
 const imagemin = require('gulp-imagemin')
@@ -143,7 +143,7 @@ const config = {
     dest: 'dist',
 }
 
-
+const iconIncludes = require(config.toolkit.icons.includes)
 
 /**
  *
@@ -175,10 +175,9 @@ const generateIconSprite = spriteName => {
         callback()
     }, function(callback) {
         let symbols = []
-        const iconIncludes = require(config.toolkit.icons.includes)
-        bundleString.split('<symbol id="').map((piece, index) => {
+        bundleString.split('<symbol id=').map((piece, index) => {
             iconIncludes.map(icon => {
-                if (piece.indexOf(`${icon}"`) >= 0) symbols.push(`<symbol id="${piece}`)
+                if (piece.indexOf(`"${icon}"`) >= 0) symbols.push(`<symbol id=${piece}`)
             })
         })
         let formattedSymbols = symbols.join('').replace('\n', '')
@@ -316,27 +315,6 @@ gulp.task('toolkit:styles:lint', () => {
                 { formatter: 'string', console: true },
             ],
         }))
-})
-
-// generate critical css
-gulp.task('toolkit:styles:critical', () => {
-    gulp.src(config.toolkit.styles.src)
-    .pipe(gulpif(config.dev, sourcemaps.init()))
-    .pipe(sass({
-        includePaths: './node_modules',
-    }).on('error', sass.logError))
-    // (Remove) comment to enable/disable TailwindCSS
-    .pipe(postcss([
-        tailwindcss(config.toolkit.styles.tailwind),
-        criticalSplit({ 'output': 'critical' }),
-        objectfit(),
-    ]).on('error', swallowError))
-    .pipe(prefix(config.toolkit.styles.browsers))
-    .pipe(gulpif(!config.dev, csso()))
-    .pipe(rename('critical.css'))
-    .pipe(gulpif(config.dev, sourcemaps.write()))
-    .pipe(gulp.dest(config.toolkit.styles.dest))
-    .pipe(gulpif(config.dev, reload({ stream: true })))
 })
 
 // style tasks
@@ -485,15 +463,15 @@ gulp.task('fabricator:serve', () => {
     files: [ config.dest + '/**/*' ]
   })
 
-  gulp.watch([config.toolkit.scripts.watch, config.fabricator.scripts.watch], ['webpack'])
-  gulp.watch(config.toolkit.styles.watch, ['toolkit:styles'])
-  gulp.watch(config.toolkit.images.src, ['toolkit:images'])
-  gulp.watch(config.toolkit.favicons.src, ['toolkit:favicons'])
-  gulp.watch(config.toolkit.icons.includes, ['toolkit:icons'])
-  gulp.watch(config.toolkit.fonts.src, ['toolkit:fonts'])
-  gulp.watch(config.toolkit.htaccess.src, ['toolkit:htaccess'])
-  gulp.watch(config.toolkit.materials.watch, ['fabricator:assemble'])
-  gulp.watch(config.fabricator.styles.watch, ['fabricator:styles'])
+  watch([config.toolkit.scripts.watch, config.fabricator.scripts.watch], () => { gulp.start('webpack') })
+  watch(config.toolkit.styles.watch, () => { gulp.start('toolkit:styles') })
+  watch(config.toolkit.images.src, () => { gulp.start('toolkit:images') })
+  watch(config.toolkit.favicons.src, () => { gulp.start('toolkit:favicons') })
+  watch(config.toolkit.icons.includes, () => { gulp.start('toolkit:icons') })
+  watch(config.toolkit.fonts.src, () => { gulp.start('toolkit:fonts') })
+  watch(config.toolkit.htaccess.src, () => { gulp.start('toolkit:htaccess') })
+  watch(config.toolkit.materials.watch, () => { gulp.start('fabricator:assemble') })
+  watch(config.fabricator.styles.watch, () => { gulp.start('fabricator:styles') })
 })
 
 
@@ -512,11 +490,11 @@ gulp.task('scaffold:material', () => {
         .pipe(
             prompt.prompt([
                 {
-                    type:'list',
-                    name:'type',
+                    type: 'list',
+                    name: 'materialType',
                     message:'Material type?',
                     choices: ['element','object','component'],
-                    pageSize:'3'
+                    pageSize: '3'
                 },
                 {
                     type: 'input',
@@ -525,14 +503,14 @@ gulp.task('scaffold:material', () => {
                 },
                 {
                     type:'list',
-                    name:'style',
-                    message:'Generate sass file?',
+                    name: 'style',
+                    message: 'Generate sass file?',
                     choices: ['yes','no'],
-                    pageSize:'1'
+                    pageSize: '2'
                 },
             ], function(res){
                 if (res.title !== '') {
-                    const materialType = res.type
+                    const materialType = res.materialType
                     const materialName = res.title
                     const createStyle = res.style === 'yes'
 
@@ -605,6 +583,11 @@ gulp.task('scaffold:material', () => {
 
                                 newfile(targetName, sassContents)
                                     .pipe(gulp.dest(`src/assets/toolkit/styles/${targetFolder}`))
+
+                                let toolkitSass = fs.readFileSync('src/assets/toolkit/styles/toolkit.scss', 'utf8')
+                                const toolkitSassParts = toolkitSass.split(`/* INJECT:${materialType} */`)
+                                const newToolkitSassCss = toolkitSassParts[0] + `@import '${materialType}s/${materialName}';\n` + `/* INJECT:${materialType} */` + toolkitSassParts[1]
+                                fs.writeFileSync('src/assets/toolkit/styles/toolkit.scss', newToolkitSassCss, 'utf8')
                             })
                             .catch(error => {
                                 console.log(error)
@@ -638,15 +621,15 @@ gulp.task('scaffold:script', () => {
                     // create script file
                     const scriptContents = ``
                     const scriptName = `${res.title}.js`
-                    const scriptTarget = `${config.toolkit.scripts.scrFolder}/${res.location}`
+                    const scriptTarget = `${config.toolkit.scripts.srcFolder}/${res.location}`
                     newfile(scriptName, scriptContents)
                         .pipe(gulp.dest(scriptTarget))
 
-                    fs.readFile(`${config.toolkit.scripts.scrFolder}/toolkit-${res.location}.js`, "utf8", (err, data) => {
+                    fs.readFile(`${config.toolkit.scripts.srcFolder}/toolkit-${res.location}.js`, "utf8", (err, data) => {
                         const newContents = `${data}
-import '${res.location}/${res.title}'`
+import './${res.location}/${res.title}'`
                         newfile(`toolkit-${res.location}.js`, newContents)
-                            .pipe(gulp.dest(`${config.toolkit.scripts.scrFolder}`))
+                            .pipe(gulp.dest(`${config.toolkit.scripts.srcFolder}`))
                     })
                 }
             })
@@ -690,7 +673,6 @@ gulp.task('build', ['utility:clean'], () => {
         'fabricator:assemble',
         'toolkit:htaccess',
         'toolkit:styles:purgecss',
-        'toolkit:styles:critical',
     )
 })
 

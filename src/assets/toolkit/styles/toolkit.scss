@@ -41,7 +41,10 @@
 @import 'elements/button';
 @import 'elements/list';
 @import 'elements/horizontal-ruler';
+/* INJECT:element */
 
+// Objects
+/* INJECT:object */
 
 // Components: Designed UI components
 @import 'components/app-layout';
@@ -52,7 +55,10 @@
 @import 'components/wallet-info';
 @import 'components/nav';
 @import 'components/icon';
-
+@import 'components/input';
+@import 'components/dropdown';
+@import 'components/grid';
+/* INJECT:component */
 
 // Utilities
 @import 'utilities/states';

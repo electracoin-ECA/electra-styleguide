@@ -10,11 +10,11 @@ export const initProgressNav = (options) => {
 
   var pathLength
 
-  window.addEventListener('resize', drawPath, false )
+  window.addEventListener( 'resize', drawPath, false )
 
   let container = window
   if (options.scrollContainer) container = document.querySelector(options.scrollContainer)
-  container.addEventListener('scroll', sync, false )
+  container.addEventListener( 'scroll', sync, false )
 
   function drawPath() {
     navItems = [].slice.call( nav.querySelectorAll( '.f-link--item' ) )

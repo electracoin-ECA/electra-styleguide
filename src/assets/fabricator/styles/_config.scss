@@ -6,7 +6,7 @@ $font--main: Montserrat;
 $font--notes: monospace;
 $font--code: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 
-$color--accent: $color--purple;
+$color--accent: $color--blue;
 
 $border-width: 2px;
 $border-style: solid;
@@ -20,9 +20,6 @@ $toolbar_height: 55px;
 
 $transition-duration: .1s;
 
-
-
-
-$color-button--background: transparent; 
+$color-button--background: transparent;
 $color-button--background-active: rgba(0,0,0,0.02);
 $color-button--border: #eaeaea;

@@ -1,5 +1,7 @@
 [
     "address-book",
+    "address-card",
+    "credit-card",
     "angle-double-right",
     "caret-down",
     "clone",
@@ -13,5 +15,6 @@
     "info-circle",
     "pencil-alt",
     "plus",
-    "qrcode"
+    "qrcode",
+    "spinner"
 ]

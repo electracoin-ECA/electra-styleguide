@@ -38,19 +38,19 @@ blockquote {
 // Super hard reset that removes all borders
 // and radius of all form items.
 // ============================
-input,
-textarea,
-button {
-    border: 0;
-    border-radius: 0;
-    outline: none;
+// input,
+// textarea,
+// button {
+//     border: 0;
+//     border-radius: 0;
+//     outline: none;
 
-    &:hover,
-    &:active,
-    &:focus {
-        outline: none;
-    }
-}
+//     &:hover,
+//     &:active,
+//     &:focus {
+//         outline: none;
+//     }
+// }
 
 // Add redfault responsiveness for referenced resources
 embed,
