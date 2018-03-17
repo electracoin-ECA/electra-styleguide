@@ -10,7 +10,6 @@
 .c-nav__items {
     @apply m-0 p-0 w-full whitespace-no-wrap;
     list-style: none;
-    overflow-x: scroll;
 
     li {
         @apply inline-block;
@@ -38,7 +37,6 @@
 @include mappy-bp(md) {
     .c-nav__title {
         @apply block;
-        overflow-x: hidden;
     }
 
     /* stylelint-disable */ 
