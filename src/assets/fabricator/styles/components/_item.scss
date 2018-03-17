@@ -45,10 +45,10 @@ $item__control_icon-color: #222;
 		color: $item__title_color;
 		display: inline-block;
 	}
-	
+
 	&__controls {
 		height: $item__header_height;
-		display: flex;	
+		display: flex;
 	}
 
 	&__control {
@@ -84,22 +84,34 @@ $item__control_icon-color: #222;
 	}
 
 	&__preview {
-		position: relative;
-		z-index: 1;
 		padding: $whitespace-scale * $whitespace-base * 0.7 $whitespace-scale * $whitespace-base * 0.6;
 	}
 
 	&__code {
 		position: relative;
-		padding: $whitespace-scale * $whitespace-base * 0.4 $whitespace-scale * $whitespace-base * 0.6;
 		overflow: auto;
 		background: $item__code_background-color;
+        overflow-y: hidden;
+        height: 0;
 
 		pre {
 			margin: 0;
 		}
+
+        &.active {
+            height: auto;
+    		padding: $whitespace-scale * $whitespace-base * 0.4 $whitespace-scale * $whitespace-base * 0.6;
+        }
 	}
-	
+
+    &__code-toggle {
+        background: $item__code_background-color;
+        text-align: center;
+        padding: $whitespace-scale * $whitespace-base * 0.2 0;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
 	&__header,
 	&__notes,
 	&__preview {

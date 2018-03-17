@@ -1,0 +1,70 @@
+
+.f-iconsheet {
+    position: fixed;
+    background: #fff;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity $transition-duration ease;
+
+    &.active {
+        visibility: visible;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    &__item {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 8.333%;
+        height: 70px;
+        box-sizing: border-box;
+        border-right: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+
+        &:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        span {
+            display: block;
+            font-size: 10px;
+            margin-top: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .f-iconsheet__item {
+        width: 10%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .f-iconsheet__item {
+        width: 14.285714286%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .f-iconsheet__item {
+        width: 20%;
+    }
+}

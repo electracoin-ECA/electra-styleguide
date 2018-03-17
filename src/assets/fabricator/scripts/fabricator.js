@@ -3,6 +3,9 @@ import { initProgressNav } from './progress-nav'
 import jump from './jump'
 import store from 'store'
 import Clipboard from 'clipboard'
+import iconIncludes from '../../../../icons.config.json'
+
+const getIconTemplate = icon => `<div class="f-iconsheet__item" data-clipboard-trigger data-clipboard-text='<svg class="c-icon"><use xlink:href="#${icon}"></use></svg>'><svg class="c-icon"><use xlink:href="#${icon}"></use></svg><span>${icon}</span></div>`
 
 // const tailwindConfig = require('../../../../tailwind.config.js')
 // console.log(tailwindConfig)
@@ -36,7 +39,9 @@ const config = {
 		fullscreenMarkup: '[data-f-fullscreen-markup]',
 		fullscreenTitle: '[data-f-fullscreen-title]',
 		rulerToggle: '[data-f-toggle-ruler]',
+        codeToggle: '[data-f-toggle-code]',
 		toast: '[data-f-toast]',
+        iconSheet: '[data-iconsheet]',
 	},
 }
 
@@ -230,6 +235,23 @@ const toggleNav = () => {
 }
 
 /**
+ * toggles icon cheatsheet
+ */
+const toggleIconSheet = () => {
+    let $iconSheet = document.querySelector(config.selectors.iconSheet)
+    if ($iconSheet.classList.contains('active')) $iconSheet.classList.remove('active')
+    else $iconSheet.classList.add('active')
+}
+
+const buildIconSheet = () => {
+    let iconSheet = ''
+    iconIncludes.map(icon => {
+        iconSheet += getIconTemplate(icon)
+    })
+    document.querySelector(config.selectors.iconSheet).innerHTML = iconSheet
+}
+
+/**
  * uses jump.js to make an animated scroll jump to the element with specified attribute data-key
  */
 const jumpToKey = key => {
@@ -264,6 +286,21 @@ const bindEventHandlers = () => {
     	deactivateFullscreenMode()
     })
 
+    for (let codeToggle of document.querySelectorAll(config.selectors.codeToggle)) {
+        codeToggle.addEventListener('click', event => {
+        	let attrName = 'data-f-toggle-code'
+			let key = event.target.getAttribute(attrName)
+        	let codeTarget = document.querySelector(`[data-f-code-key="${key}"]`)
+            if (codeTarget.classList.contains('active')) {
+                codeTarget.classList.remove('active')
+                event.target.innerText = 'Show Markup'
+            } else {
+                codeTarget.classList.add('active')
+                event.target.innerText = 'Hide Markup'
+            }
+        })
+    }
+
     // document.querySelector(config.selectors.gridToggle).addEventListener('click', toggleGridHelper)
 
 	// close menu when clicking on item (for collapsed menu view)
@@ -285,6 +322,10 @@ const bindEventHandlers = () => {
 		if (event.target.checked) activateFullscreenRuler()
 		else destroyFullscreenRuler()
 	})
+
+    document.addEventListener('keypress', e => {
+        if (e.keyCode === 105) toggleIconSheet()
+    })
 }
 
 /**
@@ -313,6 +354,11 @@ const showToast = (text, icon) => {
  * Initializes Styleguide on DOMContentLoaded Event
  */
 const initStyleguide = () => {
+	initProgressNav({
+		nav: '.f-nav--progress',
+		navMarker: '.nav-marker',
+		scrollContainer: '[data-f-jump-container]'
+	})
 
 	document.addEventListener("DOMContentLoaded", () => {
 		let clipboard = new Clipboard('[data-clipboard-trigger]');
@@ -325,12 +371,8 @@ const initStyleguide = () => {
 	    if (key && key !== '' && key !== 'null' && key !== 'undefined') activateFullscreenMode(key)
 
 		fabricator.dom.rulerToggle.checked = fullscreenRulerActive
-		
-		initProgressNav({
-			nav: '.f-nav--progress',
-			navMarker: '.nav-marker',
-			scrollContainer: '[data-f-jump-container]'
-		})
+
+        buildIconSheet()
 	})
     Prism.hooks.add('before-highlight',  env => {
 		var element = env.element
