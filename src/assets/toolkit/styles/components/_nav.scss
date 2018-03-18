@@ -39,7 +39,6 @@
         @apply block;
     }
 
-    /* stylelint-disable */ 
     .c-nav__items {
         @apply m-0 p-0 w-full;
         list-style: none;
@@ -52,9 +51,8 @@
             @apply w-full px-14;
 
             &.active {
-                background: linear-gradient(to right, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
+                background: linear-gradient(to right, rgba(0, 0, 0, .06) 0%, rgba(0, 0, 0, 0) 100%);
             }
         }
     }
-    /* stylelint-enable */
 }

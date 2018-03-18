@@ -5,7 +5,7 @@
     &__settings {
         a {
             @apply block w-full px-14 py-4 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-dark;
-            
+
             &.active,
             &:active {
                 @apply font-semi-bold text-grey-dark;
@@ -17,7 +17,7 @@
             }
 
             &.active {
-                background: linear-gradient(to right, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
+                background: linear-gradient(to right, rgba(0, 0, 0, .06) 0, rgba(0, 0, 0, 0) 100%);
             }
         }
     }
