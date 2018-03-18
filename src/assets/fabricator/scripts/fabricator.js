@@ -354,11 +354,6 @@ const showToast = (text, icon) => {
  * Initializes Styleguide on DOMContentLoaded Event
  */
 const initStyleguide = () => {
-	initProgressNav({
-		nav: '.f-nav--progress',
-		navMarker: '.nav-marker',
-		scrollContainer: '[data-f-jump-container]'
-	})
 
 	document.addEventListener("DOMContentLoaded", () => {
 		let clipboard = new Clipboard('[data-clipboard-trigger]');
@@ -371,6 +366,12 @@ const initStyleguide = () => {
 	    if (key && key !== '' && key !== 'null' && key !== 'undefined') activateFullscreenMode(key)
 
 		fabricator.dom.rulerToggle.checked = fullscreenRulerActive
+        
+        initProgressNav({
+            nav: '.f-nav--progress',
+            navMarker: '.nav-marker',
+            scrollContainer: '[data-f-jump-container]'
+        })
 
         buildIconSheet()
 	})

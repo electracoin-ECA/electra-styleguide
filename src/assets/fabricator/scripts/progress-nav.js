@@ -108,4 +108,5 @@ export const initProgressNav = (options) => {
   }
 
   drawPath()
+  sync()
 }
