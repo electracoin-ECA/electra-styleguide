@@ -16,7 +16,7 @@
     }
 
     &__label {
-        @apply text-sm font-extra-bold text-grey-light;
+        @apply text-xs font-extra-bold text-grey-dark;
     }
 
     & + & {

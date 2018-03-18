@@ -21,7 +21,6 @@ $item__control_icon-color: #222;
 	position: relative;
 	border: $item_border-width $item_border-style $item_border-color;
 	border-radius: $item_border-radius;
-	overflow: hidden;
 	margin-top: $item_padding--mobile;
 
 	@media screen and (min-width: 55em) {
@@ -84,6 +83,8 @@ $item__control_icon-color: #222;
 	}
 
 	&__preview {
+		position: relative;
+		z-index: 1;
 		padding: $whitespace-scale * $whitespace-base * 0.7 $whitespace-scale * $whitespace-base * 0.6;
 	}
 

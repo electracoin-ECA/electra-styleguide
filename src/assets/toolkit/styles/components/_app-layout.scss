@@ -14,7 +14,7 @@
         }
 
         > main {
-            @apply flex-grow bg-grey-lightest p-10;
+            @apply relative flex-grow bg-grey-lightest;
             overflow-y: auto;
         }
     }
@@ -33,10 +33,6 @@
         &__container {
             > aside {
                 @apply w-auto h-full;
-            }
-
-            > main {
-                @apply p-14;
             }
         }
     }

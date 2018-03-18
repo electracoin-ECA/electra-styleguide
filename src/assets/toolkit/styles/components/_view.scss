@@ -1,5 +1,7 @@
 
 .c-view {
+    @apply p-10;
+
     &__header {
         @apply flex justify-between items-center;
     }
@@ -10,5 +12,9 @@
 
     &__content {
         @apply block mt-4;
+    }
+
+    @include mappy-bp(md) {
+        @apply p-14;
     }
 }

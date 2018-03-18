@@ -10,6 +10,7 @@
     &__card {
         @apply absolute pin-t ml-10;
         pointer-events: none;
+        z-index: config('zIndex.5');
         visibility: hidden;
         opacity: 0;
         transition: opacity $transition-time--medium ease;
