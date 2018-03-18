@@ -1,12 +1,40 @@
 
+.c-sidebar {
+    @apply flex flex-col justify-between;
+
+    &__settings {
+        a {
+            @apply block w-full px-14 py-4 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-dark;
+            
+            &.active,
+            &:active {
+                @apply font-semi-bold text-grey-dark;
+            }
+
+            &:visited,
+            &:focus {
+                @apply text-grey-dark;
+            }
+
+            &.active {
+                background: linear-gradient(to right, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
+            }
+        }
+    }
+}
+
 @include mappy-bp(max md) {
     .c-sidebar {
         @apply w-full h-auto border-b pl-10;
+
+        &__settings {
+            @apply hidden;
+        }
     }
 }
 
 @include mappy-bp(md) {
     .c-sidebar {
-        @apply w-16 h-full pt-14 pb-8 border-r;
+        @apply w-16 h-full pt-14 pb-10 border-r;
     }
 }
