@@ -62,6 +62,7 @@ var spacing = {
     '12': '40px', 
     '13': '44px', 
     '14': '48px', 
+    '16': '58px', 
 };
 
 var customConfig = {
@@ -381,7 +382,7 @@ var customConfig = {
         '8': '75px',
         '10': '84px',
         '12': '128px',
-        '16': '190px',
+        '16': '200px',
         '24': '360px',
         'full': '100%',
         'screen': '100vw',
@@ -414,7 +415,7 @@ var customConfig = {
         '8': '75px',
         '10': '84px',
         '12': '128px',
-        '16': '190px',
+        '16': '200px',
         'icon-xs': '12px',
         'icon-sm': '16px',
         'icon-md': '19px',

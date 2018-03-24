@@ -1,6 +1,7 @@
 
 .c-sidebar {
-    @apply flex flex-col justify-between;
+    @apply flex flex-col justify-between w-10;
+    overflow: hidden;
 
     &__settings {
         a {

@@ -1,46 +1,18 @@
 
 .c-nav {
     @apply w-full text-grey-dark;
-}
 
-.c-nav__title {
-    @apply hidden px-14 pb-6 text-sm font-extra-bold;
-}
-
-.c-nav__items {
-    @apply m-0 p-0 w-full whitespace-no-wrap;
-    list-style: none;
-
-    li {
-        @apply inline-block;
+    &__title,
+    &__items {
+        @apply hidden;
     }
 
-    li a {
-        @apply block py-4 pr-8 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-dark;
-
-        &.active,
-        &:active {
-            @apply font-semi-bold text-grey-dark;
-        }
-
-        &:visited,
-        &:focus {
-            @apply text-grey-dark;
-        }
+    &__title {
+        @apply hidden px-14 pb-6 text-sm font-extra-bold;
     }
 
-    .c-icon {
-        @apply mr-4 flex-none;
-    }
-}
-
-@include mappy-bp(md) {
-    .c-nav__title {
-        @apply block;
-    }
-
-    .c-nav__items {
-        @apply m-0 p-0 w-full;
+    &__items {
+        @apply m-0 p-0 w-full whitespace-no-wrap;
         list-style: none;
 
         li {
@@ -48,11 +20,39 @@
         }
 
         li a {
-            @apply w-full px-14;
+            @apply w-full block py-4 pr-8 pl-14 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-dark;
 
+            &:active,
             &.active {
+                @apply font-semi-bold text-grey-dark;
                 background: linear-gradient(to right, rgba(0, 0, 0, .06) 0%, rgba(0, 0, 0, 0) 100%);
             }
+
+            &:visited,
+            &:focus {
+                @apply text-grey-dark;
+            }
+        }
+
+        .c-icon {
+            @apply mr-4 flex-none;
+        }
+    }
+
+    &__dropdown {
+        @apply py-4;
+    }
+}
+
+@include mappy-bp(md) {
+    .c-nav {
+        &__title,
+        &__items {
+            @apply block;
+        }
+
+        &__dropdown {
+            @apply hidden;
         }
     }
 }
