@@ -18,6 +18,14 @@
             overflow-y: auto;
         }
     }
+
+    &__toast {
+        @apply w-full fixed pin-r pin-b;
+
+        @include mappy-bp(md) {
+            width: calc(100% - config('width.16'));
+        }
+    }
 }
 
 @include mappy-bp(max md) {
