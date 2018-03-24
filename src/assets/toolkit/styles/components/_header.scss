@@ -4,6 +4,10 @@
 
     &__logo {
         @apply h-full flex items-center flex-none;
+
+        img {
+            height: 50%;
+        }
     }
 
     &__content {
@@ -21,10 +25,6 @@
 
         &__logo {
             @apply mr-10;
-
-            img {
-                height: 50%;
-            }
         }
     }
 }
@@ -34,11 +34,7 @@
         @apply h-8 px-14;
 
         &__logo {
-            @apply mr-16;
-
-            img {
-                height: 40%;
-            }
+            @apply mr-14;
         }
     }
 }

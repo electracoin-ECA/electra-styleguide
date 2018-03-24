@@ -62,7 +62,7 @@ var spacing = {
     '12': '40px', 
     '13': '44px', 
     '14': '48px', 
-    '16': '58px', 
+    '16': '66px', 
 };
 
 var customConfig = {
