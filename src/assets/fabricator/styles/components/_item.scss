@@ -84,7 +84,7 @@ $item__control_icon-color: #222;
 
 	&__preview {
 		position: relative;
-		z-index: 1;
+		// z-index: 1;
 		padding: $whitespace-scale * $whitespace-base * 0.7 $whitespace-scale * $whitespace-base * 0.6;
 	}
 

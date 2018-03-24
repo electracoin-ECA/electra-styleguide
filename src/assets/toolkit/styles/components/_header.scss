@@ -1,6 +1,6 @@
 
 .c-header {
-    @apply w-full flex border-b items-center;
+    @apply z-4 relative w-full flex border-b items-center;
 
     &__logo {
         @apply h-full flex items-center flex-none;
