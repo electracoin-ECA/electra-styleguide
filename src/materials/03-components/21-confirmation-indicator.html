@@ -1,0 +1,21 @@
+---
+notes: |
+    @todo
+---
+
+
+{{#if done}}
+    <p class="text-sm">
+        <span class="c-confirmation-indicator mr-3" data-progress="{{progress}}">
+            <span class="c-confirmation-indicator__progress"></span>
+        </span>
+        Confirmed ({{confirmed}} of {{total}})
+    </p>
+{{else}}
+    <p class="text-sm">
+        <span class="c-confirmation-indicator mr-3" data-progress="{{progress}}">
+            <span class="c-confirmation-indicator__progress"></span>
+        </span>
+        {{confirmed}} of {{total}} Confirmations
+    </p>
+{{/if}}

@@ -1,0 +1,31 @@
+
+/* stylelint-disable */
+.c-confirmation-indicator {
+    @apply relative inline-block border border-purple;
+    height: 10px;
+    width: 20px;
+
+    &__progress {
+        @apply absolute pin-t pin-l inline-block bg-purple-dark h-full;
+    }
+}
+
+.c-confirmation-indicator[data-progress='0'] .c-confirmation-indicator__progress {
+    width: 0;
+}
+
+.c-confirmation-indicator[data-progress='25'] .c-confirmation-indicator__progress {
+    width: 25%;
+}
+
+.c-confirmation-indicator[data-progress='50'] .c-confirmation-indicator__progress {
+    width: 50%;
+}
+
+.c-confirmation-indicator[data-progress='75'] .c-confirmation-indicator__progress {
+    width: 75%;
+}
+
+.c-confirmation-indicator[data-progress='100'] .c-confirmation-indicator__progress {
+    width: 100%;
+}
