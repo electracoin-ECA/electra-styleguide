@@ -1,6 +1,6 @@
 {
   "name": "electra-assets",
-  "version": "0.2.0",
+  "version": "0.5.1",
   "description": "Living styleguide and pattern library",
   "scripts": {
     "start": "npm run dev",
