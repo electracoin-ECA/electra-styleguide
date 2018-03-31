@@ -8,7 +8,7 @@ input[type=submit] {
     @apply .text-sm;
     @apply .text-white;
     @apply .text-center;
-    @apply .bg-purple;
+    @apply .bg-purple-darker;
     @apply .rounded;
     display: inline-block;
     transition: position $transition-time ease-in, background-color $transition-time ease-in;

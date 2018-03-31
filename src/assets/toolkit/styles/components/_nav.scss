@@ -1,6 +1,6 @@
 
 .c-nav {
-    @apply w-full text-grey-dark;
+    @apply w-full text-grey-lightest;
 
     &__title,
     &__items {
@@ -20,17 +20,17 @@
         }
 
         li a {
-            @apply w-full block py-4 pr-8 pl-14 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-dark;
+            @apply w-full block py-4 pr-8 pl-14 text-xs font-regular cursor-pointer no-underline flex items-center text-grey-lightest;
 
             &:active,
             &.active {
-                @apply font-semi-bold text-grey-dark;
-                background: linear-gradient(to right, rgba(0, 0, 0, .06) 0%, rgba(0, 0, 0, 0) 100%);
+                @apply font-semi-bold text-white;
+                background: linear-gradient(to right, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 100%);
             }
 
             &:visited,
             &:focus {
-                @apply text-grey-dark;
+                @apply text-white;
             }
         }
 

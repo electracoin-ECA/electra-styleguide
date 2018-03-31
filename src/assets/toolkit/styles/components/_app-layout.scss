@@ -1,6 +1,6 @@
 
 .c-app-layout {
-    @apply w-full h-full flex flex-col;
+    @apply w-full h-full flex flex-col bg-purple-darker;
 
     &__toolbar {
         @apply w-full h-auto flex-none flex items-center;
@@ -14,7 +14,7 @@
         }
 
         > main {
-            @apply relative flex-grow bg-grey-lightest;
+            @apply relative flex-grow bg-purple-darker;
             overflow-y: auto;
         }
     }

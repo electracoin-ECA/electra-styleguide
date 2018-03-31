@@ -38,8 +38,11 @@ var defaultConfig = require('tailwindcss/defaultConfig')();
 var colors = {
     'purple': '#BE00FF',
     'purple-dark': '#A618D7',
+    'purple-darker': '#61077f',
+    'purple-darkest': '#4e0666',
     'purple-translucent': 'rgba(190, 0, 255, 0.1)',
     'white': '#ffffff',
+    'black-translucent': 'rgba(0, 0, 0, .16)',
     'grey-dark': '#1C1242',
     'grey-light': '#D2D0D9',
     'grey-lighter': '#EDEDED',

@@ -1,6 +1,6 @@
 
 .c-card {
-    @apply bg-white shadow rounded;
+    @apply bg-purple-darkest shadow rounded;
 
     &--content-centered {
         .c-card__content {
@@ -18,21 +18,11 @@
 }
 
 .c-card__actions {
-    @apply flex overflow-hidden border-t;
+    @apply flex overflow-hidden border-t border-black-translucent;
     border-bottom-right-radius: config('borderRadius.default');
     border-bottom-left-radius: config('borderRadius.default');
 
     button {
-        @apply flex-1 rounded-none p-6;
-        order: 1;
-
-        &:nth-child(2) {
-            @apply bg-grey-lighter text-grey-dark;
-            order: 0;
-
-            &:hover {
-                @apply bg-grey-light;
-            }
-        }
+        @apply w-full rounded-none p-6;
     }
 }

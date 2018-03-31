@@ -50,6 +50,7 @@ $header__button_border-color: $color--grey-light;
 		transition: background-color $transition-duration ease;
 		background: $header__button_background-color;
 		fill: $header__button_color;
+		color: #222;
 
 		&:hover {
 			background: $header__button_background-color--active;
