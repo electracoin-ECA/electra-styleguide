@@ -1,6 +1,6 @@
 
 .c-card {
-    @apply bg-white shadow rounded;
+    @apply relative bg-white shadow rounded text-grey-dark;
 
     &--content-centered {
         .c-card__content {
@@ -15,6 +15,27 @@
 
 .c-card__content {
     @apply p-8;
+}
+
+.c-card__expandable {
+    height: 0;
+    overflow: hidden;
+}
+
+.c-card.expanded .c-card__expandable {
+    @apply border-t border-grey-lightest p-8;
+    height: auto;
+    overflow: auto;
+}
+
+.c-card.expanded .c-card__toggle-icon {
+    transform: rotate(180deg);
+}
+
+.c-card__toggle-icon {
+    @apply absolute text-grey-light flex content-end;
+    top: config('padding.9');
+    right: config('padding.8');
 }
 
 .c-card__actions {

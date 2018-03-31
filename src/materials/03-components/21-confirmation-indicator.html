@@ -1,6 +1,6 @@
 ---
 notes: |
-    @todo
+    - Use data-attribute `data-progress` to set progress value, can be 0,25,50,75,100 (divide number of confirmed by number of total and round to one of these values)
 ---
 
 
@@ -9,13 +9,13 @@ notes: |
         <span class="c-confirmation-indicator mr-3" data-progress="{{progress}}">
             <span class="c-confirmation-indicator__progress"></span>
         </span>
-        Confirmed ({{confirmed}} of {{total}})
+        Confirmed ({{#if confirmed}}{{confirmed}}{{else}}0{{/if}} of {{#if total}}{{total}}{{else}}4{{/if}})
     </p>
 {{else}}
     <p class="text-sm">
         <span class="c-confirmation-indicator mr-3" data-progress="{{progress}}">
             <span class="c-confirmation-indicator__progress"></span>
         </span>
-        {{confirmed}} of {{total}} Confirmations
+        {{#if confirmed}}{{confirmed}}{{else}}0{{/if}} of {{#if total}}{{total}}{{else}}4{{/if}} Confirmations
     </p>
 {{/if}}

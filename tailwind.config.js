@@ -41,6 +41,7 @@ var colors = {
     'purple-translucent': 'rgba(190, 0, 255, 0.1)',
     'white': '#ffffff',
     'grey-dark': '#1C1242',
+    'grey': '#666666',
     'grey-light': '#D2D0D9',
     'grey-lighter': '#EDEDED',
     'grey-lightest': '#FBFAFF',
@@ -115,7 +116,7 @@ var customConfig = {
     screens: {
         'sm': '30em', // 480
         'md': '48em', // 768
-        'lg': '62em', // 992
+        'lg': '66em', // 992
         'xl': '75em', // 1200
     },
 
