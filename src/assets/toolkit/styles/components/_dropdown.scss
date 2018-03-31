@@ -1,0 +1,15 @@
+
+.c-dropdown {
+    @apply relative inline-block w-full font-semi-bold text-grey-dark border-b border-grey-lighter;
+
+    select {
+        @apply inline-block appearance-none w-full py-3 font-semi-bold bg-white text-grey-dark;
+    }
+
+    &__icon {
+        @apply mb-3;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}

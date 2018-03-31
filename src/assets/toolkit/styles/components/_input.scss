@@ -1,0 +1,25 @@
+
+.c-input {
+    @apply inline-block w-full appearance-none border-b border-grey-lighter;
+
+    input {
+        @apply inline-block w-full py-3 font-semi-bold text-grey-dark;
+        outline: 0;
+
+        &:focus {
+            outline: 0;
+        }
+
+        &::placeholder {
+            @apply text-grey font-regular;
+        }
+    }
+
+    &__label {
+        @apply text-xs font-extra-bold text-grey-dark;
+    }
+
+    & + & {
+        @apply mt-8;
+    }
+}
