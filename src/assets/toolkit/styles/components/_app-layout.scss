@@ -1,6 +1,6 @@
 
 .c-app-layout {
-    @apply w-full h-full flex flex-col;
+    @apply bg-white w-full h-full flex flex-col;
 
     &__toolbar {
         @apply w-full h-auto flex-none flex items-center;
