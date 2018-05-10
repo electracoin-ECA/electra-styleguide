@@ -1,5 +1,7 @@
 # Electra Styleguide
 
+https://electra-project.github.io/Electra-Styleguide/
+
 Welcome to the Electra style guide and pattern library. It's a work in progress and a place for the latest CSS and image assets, guidelines on using them as well as the markup and style of UI components and patterns to be used in development projects. 
 
 It's created for collaboratively improving the Electra design, so everyone with design and/or CSS skills is welcome to contribute.
