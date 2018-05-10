@@ -9,7 +9,8 @@
     "build": "gulp build",
     "m": "gulp scaffold:material",
     "s": "gulp scaffold:script",
-    "setup": "gulp scaffold:setup"
+    "setup": "gulp scaffold:setup",
+    "deploy": "npm run build && git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [
     "styleguide",
