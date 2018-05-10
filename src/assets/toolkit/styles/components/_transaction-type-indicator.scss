@@ -1,0 +1,14 @@
+
+.c-transaction-type-indicator {
+    &[data-transaction-type=out] {
+        @apply text-negative;
+    }
+
+    &[data-transaction-type=in] {
+        @apply text-positive;
+
+        .c-icon {
+            transform: rotate(180deg);
+        }
+    }
+}

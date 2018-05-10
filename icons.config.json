@@ -1,6 +1,7 @@
 [
     "address-book",
     "address-card",
+    "arrow-alt-circle-down",
     "credit-card",
     "angle-double-right",
     "caret-down",
@@ -16,5 +17,6 @@
     "pencil-alt",
     "plus",
     "qrcode",
-    "spinner"
+    "spinner",
+    "arrow-alt-circle-up"
 ]

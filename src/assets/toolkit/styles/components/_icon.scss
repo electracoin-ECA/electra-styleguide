@@ -1,8 +1,10 @@
 
 .c-icon {
-    @apply w-icon-md h-icon-md inline-block text-grey-dark;
+    @apply relative w-icon-md h-icon-md inline-block;
+    vertical-align: middle;
     color: inherit;
     fill: currentColor;
+    top: -2px;
 
     &--size-xs {
         @apply w-icon-xs h-icon-xs;

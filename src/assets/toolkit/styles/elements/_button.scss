@@ -1,21 +1,39 @@
 
 button,
 input[type=button],
-input[type=submit] {
-    @apply .px-10;
+input[type=submit],
+.c-button {
+    @apply .px-8;
     @apply .py-4;
     @apply .font-bold;
     @apply .text-sm;
     @apply .text-white;
     @apply .text-center;
     @apply .bg-purple;
+    @apply .no-underline;
     @apply .rounded;
     display: inline-block;
-    transition: position $transition-time ease-in, background-color $transition-time ease-in;
+    transition: all $transition-time ease-in;
 
     &:hover,
     &:focus {
         @apply .bg-purple-dark;
         @apply .no-underline;
     }
+}
+
+.c-button--grey {
+    @apply .bg-transparent;
+    @apply .text-grey;
+    @apply .border-2;    
+    @apply .border-grey-lightest;  
+    @apply .px-6; 
+
+    &:hover,
+    &:focus {
+        @apply .bg-transparent;
+        @apply .no-underline;
+        @apply .border-grey-lighter; 
+        @apply .text-grey-dark;
+    } 
 }

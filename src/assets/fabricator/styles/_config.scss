@@ -1,12 +1,12 @@
+@import 'accent-color';
+
 $shadow--small: 0px 0px 5px rgba(12,12,13,.1);
 $shadow--bottom-inset: inset 0px -4px 8px rgba(12,12,13,.03);
 $shadow--right-inset: inset -4px 0px 8px rgba(12,12,13,.03);
 
-$font--main: Montserrat;
-$font--notes: monospace;
+$font--main: "system-ui", "BlinkMacSystemFont", "-apple-system", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$font--notes: $font--main;
 $font--code: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-
-$color--accent: $color--purple;
 
 $border-width: 2px;
 $border-style: solid;

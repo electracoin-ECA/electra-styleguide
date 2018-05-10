@@ -16,6 +16,8 @@ export const initProgressNav = (options) => {
   if (options.scrollContainer) container = document.querySelector(options.scrollContainer)
   container.addEventListener( 'scroll', sync, false )
 
+  drawPath()
+
   function drawPath() {
     navItems = [].slice.call( nav.querySelectorAll( '.f-link--item' ) )
     // console.log(navItems)
@@ -106,7 +108,4 @@ export const initProgressNav = (options) => {
       navPath.setAttribute('opacity', 0)
     }
   }
-
-  drawPath()
-  sync()
 }

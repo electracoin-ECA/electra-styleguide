@@ -22,7 +22,7 @@ $nav__item_border-color: $color--grey-lighter;
   right: 0px;
   width: 3px;
   height: 100%;
-  
+
   path {
 	stroke: $color--accent;
 	fill: none;
@@ -68,9 +68,9 @@ a.f-nav-item {
 
 	&:hover {
 		background-color: $color-button--background-active;
-		font-weight: 500;
+        color: $color--accent;
 	}
-  
+
 	&.visible {
 		color: $color--accent;
 		background-color: $color-button--background-active;

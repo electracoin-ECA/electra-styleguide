@@ -2,7 +2,6 @@
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	overflow: hidden;
 }
 
 .f-app {
@@ -17,6 +16,7 @@
 .f-view {
 	display: flex;	
 	position: relative;
+	overflow: hidden;
 
 	& > main {
 		flex: 1;

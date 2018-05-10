@@ -1,0 +1,60 @@
+
+.o-grid {
+    @apply flex flex-wrap justify-between;
+
+    &__item {
+        @apply mb-6;
+    }
+}
+
+.o-grid--halves .o-grid__item {
+    width: calc(50% - config('margin.6'));
+}
+
+@include mappy-bp(max md) {
+    .o-grid--halves .o-grid__item {
+        width: 100%;
+    }
+}
+
+.o-grid--thirds .o-grid__item {
+    width: calc(33.33% - config('margin.6'));
+}
+
+@include mappy-bp(max md) {
+    .o-grid--thirds .o-grid__item {
+        width: 100%;
+    }
+}
+
+.o-grid--fourths .o-grid__item {
+    width: calc(25% - config('margin.6'));
+}
+
+@include mappy-bp(max md) {
+    .o-grid--fourths .o-grid__item {
+        width: calc(50% - config('margin.6'));
+    }
+}
+
+@include mappy-bp(max sm) {
+    .o-grid--fourths .o-grid__item {
+        width: 100%;
+    }
+}
+
+.o-grid--fifths .o-grid__item {
+    width: calc(20% - config('margin.6'));
+}
+
+@include mappy-bp(max md) {
+    .o-grid--fifths .o-grid__item {
+        width: calc(33.33% - config('margin.6'));
+    }
+}
+
+@include mappy-bp(max sm) {
+    .o-grid--fifths .o-grid__item {
+        width: calc(50% - config('margin.6'));
+    }
+}

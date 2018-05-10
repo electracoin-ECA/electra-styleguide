@@ -12,7 +12,7 @@ $item__title_color: #222;
 $item__notes_font-family: $font--notes;
 $item__notes_font-size: 14px;
 $item__notes_font-weight: 300;
-$item__notes_line-height: 21px;
+$item__notes_line-height: 24px;
 $item__notes_color: #555;
 $item__code_background-color: $color--grey-lightest;
 $item__control_icon-color: #222;
@@ -57,10 +57,11 @@ $item__control_icon-color: #222;
 		width: 1.1 * $item__header_height;
 		cursor: pointer;
 		fill: $item__control_icon-color;
-		transition: background-color $transition-duration ease;
+		transition: all $transition-duration ease;
 
 		&:hover {
 			background-color: $color-button--background-active;
+            color: $color--accent;
 		}
 
 		svg {
@@ -80,11 +81,16 @@ $item__control_icon-color: #222;
 			padding: 0 $whitespace-scale * $whitespace-base * 0.6;
 			margin: 0;
 		}
+
+		code {
+			background-color: #f9f9f9;
+			color: #000;
+		}
 	}
 
 	&__preview {
 		position: relative;
-		// z-index: 1;
+		z-index: 1;
 		padding: $whitespace-scale * $whitespace-base * 0.7 $whitespace-scale * $whitespace-base * 0.6;
 	}
 

@@ -1,0 +1,17 @@
+p {
+    margin-bottom: 1em;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Basic inline elements are styled here as they are usually used within
+// paragraphs and don't need a lot of styling
+strong {
+    @apply .font-bold;
+}
+
+em {
+    text-style: italic;
+}

@@ -34,9 +34,9 @@
 // Generics: High level rules, think normalize.css – nothing project design specific
 @import 'generic/reset';
 
-
 // Elements: Styles that go directly on HTML elements, no classes or ids
 @import 'elements/body';
+@import 'elements/paragraph';
 @import 'elements/headings';
 @import 'elements/button';
 @import 'elements/list';
@@ -44,6 +44,9 @@
 /* INJECT:element */
 
 // Objects
+// @import 'objects/container';
+// @import 'objects/section';
+@import 'objects/grid';
 /* INJECT:object */
 
 // Components: Designed UI components
@@ -51,17 +54,19 @@
 @import 'components/header';
 @import 'components/sidebar';
 @import 'components/view';
+@import 'components/icon';
 @import 'components/card';
 @import 'components/wallet-info';
 @import 'components/nav';
-@import 'components/icon';
-@import 'components/grid';
 @import 'components/qr-code';
 @import 'components/input';
 @import 'components/dropdown';
 @import 'components/badge';
 @import 'components/toast';
+@import 'components/icon-label';
 @import 'components/confirmation-indicator';
+@import 'components/transaction-type-indicator';
+@import 'components/icon-label';
 /* INJECT:component */
 
 // Utilities

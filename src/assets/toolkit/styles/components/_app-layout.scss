@@ -21,9 +21,20 @@
 
     &__toast {
         @apply z-5 w-full fixed pin-r pin-b;
+        transition: all $transition-time--medium ease;
 
         @include mappy-bp(md) {
             width: calc(100% - config('width.16'));
+        }
+
+        &--active-true {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        &--active-false {
+            transform: translateY(60px);
+            opacity: 0;
         }
     }
 }

@@ -1,0 +1,15 @@
+
+.c-icon-label {
+    @apply .inline-flex;
+    @apply .items-center;
+
+    &__icon {
+        @apply .mr-3;
+        @apply .text-grey;
+    }
+
+    &__label {
+        @apply .text-grey-dark;
+        @apply .text-lg;
+    }
+}

@@ -18,6 +18,7 @@ $sidebar_width: 14em;
 	&__title {
 		font-size: 14px;
 		font-weight: 300;
+		font-family: $font--main;
 	}
 
 	.f-state--sidebar-active & {

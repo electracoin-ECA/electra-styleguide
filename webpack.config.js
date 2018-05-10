@@ -1,72 +1,40 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-
-/**
-* Define plugins based on environment
-* @param {boolean} isDev If in development mode
-* @return {Array}
-*/
-function getPlugins(isDev) {
+module.exports = (isDev, config) => {
     const plugins = [
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.DefinePlugin({}),
-    ]
+    ];
 
     if (isDev) {
-        plugins.push(new webpack.NoErrorsPlugin())
-    } else {
-        plugins.push(new webpack.optimize.DedupePlugin())
-        plugins.push(new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            sourceMap: false,
-            compress: {
-                warnings: false,
-            },
-        }))
+        plugins.push(new webpack.NoEmitOnErrorsPlugin());
     }
 
-    return plugins
-}
-
-
-/**
-* Define loaders
-* @return {Array}
-*/
-function getLoaders() {
-    const loaders = [{
-        test: /(\.js)/,
-        exclude: /node_modules/,
-        loaders: ['babel'],
-    }, {
-        test: /(\.jpg|\.png)$/,
-        loader: 'url-loader?limit=10000',
-    }, {
-        test: /\.json/,
-        loader: 'json-loader',
-    }]
-    return loaders
-}
-
-
-module.exports = (config) => {
     return {
-        entry: {
-            'fabricator/scripts/fabricator': config.fabricator.scripts.src,
-            'toolkit/scripts/toolkit': config.toolkit.scripts.src,
+        mode: isDev ? 'development' : 'production',
+        optimization: {
+            minimize: !isDev
         },
+        entry: Object.assign({}, config.toolkit.entry.js, config.styleguide.entry.js),
         output: {
-            path: path.resolve(__dirname, config.dest, 'assets'),
+            path: path.resolve(__dirname, config.paths.base.dist, 'assets'),
             filename: '[name].js',
         },
         devtool: 'source-map',
         resolve: {
-            extensions: ['', '.js'],
+            extensions: ['.js'],
         },
-        plugins: getPlugins(config.dev),
+        plugins: plugins,
         module: {
-            loaders: getLoaders(),
+            rules: [{
+                test: /(\.js)\$/,
+                exclude: /(node_modules(?!\/@nimius))/,
+                loaders: ['babel-loader'],
+            }, {
+                test: /(\.jpg|\.png)$/,
+                loader: 'url-loader?limit=10000',
+            }]
         },
-    }
-}
+    };
+};

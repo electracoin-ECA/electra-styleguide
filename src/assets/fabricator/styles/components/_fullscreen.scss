@@ -18,7 +18,6 @@ $fullscreen-close-button_icon-size: 22px;
 	pointer-events: none;
 	visibility: hidden;
 	opacity: 0;
-	z-index: 9999;
 	display: flex;
 	flex-direction: column;
 	transition: opacity $transition-duration ease;
@@ -59,25 +58,6 @@ $fullscreen-close-button_icon-size: 22px;
 		flex: 1;
 		z-index: 0;
 		box-sizing: border-box;
-
-		.gutter {
-			display: flex;
-			cursor: move;
-			background-color: $fullscreen-resize-gutter_background-color;
-			fill: $fullscreen-close-button_color;
-
-			&:hover {
-				background-color: $fullscreen-resize-gutter_background-color--active;				
-			}
-
-			svg {
-			    height: $fullscreen-resize-gutter_icon-size;
-				width: $fullscreen-resize-gutter_icon-size;
-			    position: relative;
-			    top: 18px;
-			    margin: auto;
-			}
-		}
 	}
 }
 
@@ -89,10 +69,11 @@ $fullscreen-close-button_icon-size: 22px;
 	float: right;
 	cursor: pointer;
 	background-color: $fullscreen-close-button_background-color;
-	transition: background-color $transition-duration ease;
+    transition: all $transition-duration ease;
 
 	&:hover {
 		background-color: $fullscreen-close-button_background-color--active;
+        color: $color--accent;
 	}
 
 	svg {
@@ -100,7 +81,7 @@ $fullscreen-close-button_icon-size: 22px;
 		height: $fullscreen-close-button_icon-size;
 		margin: auto;
 	}
-}	
+}
 
 .f-fullscreen__content {
     position: relative;
@@ -109,7 +90,7 @@ $fullscreen-close-button_icon-size: 22px;
 
     [data-f-state--fullscreen-ruler="active"] & {
 	    padding-top: $ruler-size;
-	    padding-left: $ruler-size;    	
+	    padding-left: $ruler-size;
     }
 }
 

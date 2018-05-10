@@ -4,83 +4,100 @@ fabricator: true
 ---
 <!-- Index -->
 <div class="f-category" id="index" data-key="index">
-	<!-- Category Header (title and optional introduction) -->
-	<div class="f-category__header">
-		<div class="f-category__title">Introduction</div>
-		<div class="f-category__description">
-			Welcome to the Electra style guide and pattern library. It's a work in progress and a place for the latest CSS and image assets, guidelines on using them as well as the markup and style of UI components and patterns to be used in development projects. 
-			<br>
-			<br>
-			It's created for collaboratively improving the Electra design, so everyone with design and/or CSS skills is welcome to contribute. <a class="f-link" href="https://github.com/Electra-project/Electra-Styleguide">Check it out on Github.</a>
-		</div>
-	</div>
+    <!-- Category Header (title and optional introduction) -->
+    <div class="f-category__header">
+        <div class="f-category__title">Introduction</div>
+        <div class="f-category__description">
+            Welcome to the Electra style guide and pattern library. It's a work in progress and a place for the latest CSS and image assets, guidelines on using them as well as the markup and style of UI components and patterns to be used in development projects. 
+            <br>
+            <br>
+            It's created for collaboratively improving the Electra design, so everyone with design and/or CSS skills is welcome to contribute. <a class="f-link" href="https://github.com/Electra-project/Electra-Styleguide">Check it out on Github.</a>
+        </div>
+    </div>
 </div>
 
 <!-- Category -->
 <div class="f-category" id="01-branding" data-key="01-branding">
-	<!-- Category Header (title and optional introduction) -->
-	<div class="f-category__header">
-		<div class="f-category__title">Branding</div>
-		<div class="f-category__description">
-			Use the following colors, fonts and images when creating Electra-branded designs. Go to <pre style="display:inline;">dist/assets/toolkit</pre> to find the assets for logos, images, icons and fonts.
-		</div>
-	</div>
-	<div class="f-category__items">
+    <!-- Category Header (title and optional introduction) -->
+    <div class="f-category__header">
+        <div class="f-category__title">Branding</div>
+        <div class="f-category__description">
+            Use the following colors, fonts and images when creating Electra-branded designs. Go to <pre style="display:inline;">dist/assets/toolkit</pre> to find the assets for logos, images, icons and fonts.
+        </div>
+    </div>
+    <div class="f-category__items">
 <!-- Category Items (don't indent these lines) -->
 {{#each materials.01-branding.items}}
 {{> f-item this}}
 {{/each}}
-	</div>	
+    </div>
 </div>
 
 <!-- Category -->
 <div class="f-category" id="02-elements" data-key="02-elements">
-	<!-- Category Header (title and optional introduction) -->
-	<div class="f-category__header">
-		<div class="f-category__title">Elements</div>
-		<div class="f-category__description">
-			This section shows how basic HTML elements like headlines (h1-h6), paragraphs, links, lists, buttons, inputs etc should look like.
-		</div>
-	</div>
-	<div class="f-category__items">
+    <!-- Category Header (title and optional introduction) -->
+    <div class="f-category__header">
+        <div class="f-category__title">Elements</div>
+        <div class="f-category__description">
+            This section shows how basic HTML elements like headlines (h1-h6), paragraphs, links, lists, buttons, inputs etc should look like.
+        </div>
+    </div>
+    <div class="f-category__items">
 <!-- Category Items (don't indent these lines) -->
 {{#each materials.02-elements.items}}
 {{> f-item this}}
 {{/each}}
-	</div>	
+    </div>
 </div>
 
 <!-- Category -->
-<div class="f-category" id="03-components" data-key="03-components">
-	<!-- Category Header (title and optional introduction) -->
-	<div class="f-category__header">
-		<div class="f-category__title">Components</div>
-		<div class="f-category__description">
-			The following are components that are combined to create Electra user interfaces. Take the HTML markup (copy with the button on the right) as well as the main stylesheet and use them in your JS-based application.
-		</div>
-	</div>
-	<div class="f-category__items">
+<div class="f-category" id="03-objects" data-key="03-objects">
+    <!-- Category Header (title and optional introduction) -->
+    <div class="f-category__header">
+        <div class="f-category__title">Objects</div>
+        <div class="f-category__description">
+            Objects are used to implement design-agnostic layout requirements.
+        </div>
+    </div>
+    <div class="f-category__items">
 <!-- Category Items (don't indent these lines) -->
-{{#each materials.03-components.items}}
+{{#each materials.03-objects.items}}
 {{> f-item this}}
 {{/each}}
-	</div>	
+    </div>
+</div>
+
+<!-- Category -->
+<div class="f-category" id="04-components" data-key="04-components">
+    <!-- Category Header (title and optional introduction) -->
+    <div class="f-category__header">
+        <div class="f-category__title">Components</div>
+        <div class="f-category__description">
+            The following are components that are combined to create Electra user interfaces. Take the HTML markup (copy with the button on the right) as well as the main stylesheet and use them in your JS-based application.
+        </div>
+    </div>
+    <div class="f-category__items">
+<!-- Category Items (don't indent these lines) -->
+{{#each materials.04-components.items}}
+{{> f-item this}}
+{{/each}}
+    </div>
 </div>
 
 <!-- Pages -->
 <div class="f-category" id="pages" data-key="pages">
-	<!-- Category Header (title and optional introduction) -->
-	<div class="f-category__header">
-		<div class="f-category__title">Pages</div>
-		<div class="f-category__description">
-			Add pages to show different variations of a component or how different components can be combined. 
-		</div>
-	</div>
-	<br>
-	<div class="f-category__items f-page-boxes">
+    <!-- Category Header (title and optional introduction) -->
+    <div class="f-category__header">
+        <div class="f-category__title">Pages</div>
+        <div class="f-category__description">
+            Add pages to show different variations of a component or how different components can be combined.
+        </div>
+    </div>
+    <br>
+    <div class="f-category__items f-page-boxes">
 <!-- Category Items (don't indent these lines) -->
 {{#each views.pages.items}}
-	{{> f-page-box this}}
+    {{> f-page-box this}}
 {{/each}}
-	</div>	
+    </div>
 </div>

@@ -12,6 +12,7 @@ $nav-mobile_background-color: $color--white;
 	visibility: hidden;
 	pointer-events: none;
 	transition: opacity $transition-duration ease;
+	overflow-y: scroll;
 
 	.f-state--menu-active & {
 		opacity: 1;

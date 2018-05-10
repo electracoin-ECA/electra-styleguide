@@ -14,7 +14,8 @@ $category__sub_padding--mobile: $whitespace-base * $whitespace-scale * 0.9;
 		font-size: 36px;
 		font-weight: 700;
 		margin-bottom: 10px;
-		line-height: normal;		
+		line-height: normal;
+		font-family: $font--main;
 	}
 
 	&__title--sub {
@@ -27,6 +28,12 @@ $category__sub_padding--mobile: $whitespace-base * $whitespace-scale * 0.9;
 		font-size: 15px;
 		line-height: 26px;
 		font-weight: 300;
+		font-family: $font--main;
+
+		code {
+			background-color: #f9f9f9;
+			color: #000;
+		}
 	}
 
 	&__sub {

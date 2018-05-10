@@ -15,17 +15,17 @@
 .switch{
 	--uiSwitchSize: var(--switchSize, 64px);
 	--uiSwitchBgColor: var(--switchBgColor, #eee);
-	--uiSwitchBgColorActive: var(--switchBgColorActive, $color--accent);
+	--uiSwitchBgColorActive: var(--switchBgColorActive, #{$color--accent});
 	--uiSwitchBorderColorActive: var(--switchBorderColorActive, #fff);
 	--uiSwitchBorderColorFocus: var(--switchBgColorFocus, #43b556);
-	--uiSwitchButtonBgColor: var(--switchButtonBgColor, #fff); 
-	--uiSwitchBorderRadius: var(--switchBorderRadius, 60px); 
+	--uiSwitchButtonBgColor: var(--switchButtonBgColor, #fff);
+	--uiSwitchBorderRadius: var(--switchBorderRadius, 60px);
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
 
 	width: var(--uiSwitchSize);
 	height: calc((var(--uiSwitchSize) / 2));
-	border-radius: var(--uiSwitchBorderRadius);    
+	border-radius: var(--uiSwitchBorderRadius);
 	background-color: var(--uiSwitchBgColorActive);
 	--switchSize: 32px;
 }
@@ -34,7 +34,7 @@
 	display: block;
 	width: 100%;
 	height: 100%;
-	border-radius: var(--uiSwitchBorderRadius); 
+	border-radius: var(--uiSwitchBorderRadius);
 }
 
 .switch__toggle{
@@ -82,8 +82,8 @@
   width: calc(var(--uiSwitchSize) / 2);
   height: calc(var(--uiSwitchSize) / 2);
   transform: translate3d(0, -50%, 0);
-  
+
   background-color: var(--uiSwitchButtonBgColor);
   border-radius: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
 }
