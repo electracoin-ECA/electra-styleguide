@@ -1,64 +1,49 @@
 ---
 notes: |
-    This component is being redesigned and currently unavailable
+    - Items for displaying a list of transactions
+    - Toggle class `expanded` on the card to show/hide the content of `c-card__expandable`
+    - Find an example of collapsed and expanded state on <a class="f-link" href="pages/transaction-card.html" target="_blank">pages/transaction-card</a>
+    - @todo: add animation and more fitting layout
 ---
 
-((UNDER CONSTRUCTION))
-
-<!-- <div class="c-card">
-    <div class="c-card__content">
-        <div class="flex justify-between">
-            <div>
-                <div class="c-icon-label">
-                    <div class="c-icon-label__icon">
-                        <div class="c-transaction-type-indicator" data-transaction-type="in">
-                            <svg class="c-icon">
-                                <use xlink:href="#arrow-alt-circle-up" />
-                            </svg>
-                        </div>
-                    </div>
-                    <span class="c-icon-label__label">
-                        Received    
-                    </span>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <div class="c-icon-label mr-4">
-                        <div class="c-icon-label__icon">
-                            <svg class="c-icon">
-                                <use xlink:href="#calendar-alt" />
-                            </svg>
-                        </div>
-                        <span class="c-icon-label__label">
-                            24-01-2018
-                        </span>
-                    </div>
-                    <div class="c-icon-label">
-                        <div class="c-icon-label__icon">
-                            <svg class="c-icon">
-                                <use xlink:href="#clock" />
-                            </svg>
-                        </div>
-                        <span class="c-icon-label__label">
-                            9:20 PM
-                        </span>
-                    </div>                    
-                </div>
-            </div>
+<div class="c-card {{#if expanded}}expanded{{/if}}">
+    <div class="c-card__content items-center pr-16">
+        <div class="block lg:inline-block mb-4 lg:mr-8 lg:mb-0">
+            <span class="block">Received</span>
+            <p class="font-extra-bold">20.204 ECA</p>
         </div>
-        <div class="mt-4 flex justify-between items-center">
-            <span class="font-extra-bold text-3xl">2000 ECA</span>
-            <button class="c-button c-button--grey">
-                Details
-                <svg class="ml-2 c-icon">
-                    <use xlink:href="#caret-down" />
+        <div class="block lg:inline-block mb-4 lg:mr-8 lg:mb-0">
+            <span class="block">From</span>
+            <p class="font-extra-bold">EHDHwaeGsearu1WLbKToRdmnoS8BGD9hGC</p>
+        </div>
+        <div class="block lg:inline-block lg:float-right pr-6d">
+            <span class="text-grey">
+                <svg class="c-icon c-icon--size-xs inline">
+                    <use xlink:href="#calendar-alt" />
                 </svg>
-            </button>
+                24-01-2018
+            </span>
+            <span class="text-grey ml-4">
+                <svg class="c-icon c-icon--size-xs inline">
+                    <use xlink:href="#clock" />
+                </svg>
+                09:20 PM
+            </span>
+            {{> confirmation-indicator progress="25" confirmed="3" total="10"}}
+        </div>
+        <div class="c-card__toggle-icon">
+            <svg class="c-icon c-icon--size-lg inline">
+                <use xlink:href="#caret-down" />
+            </svg>
         </div>
     </div>
-    <div class="c-card__expandable active">
-        EXPANDABLE CONTENT
+    <div class="c-card__expandable">
+        <span class="block font-semi-bold">Transaction ID</span>
+        <p>fdd287561e97f1dac4ccdbd38b35fd9981e232e31cbb20aeab48f75db58e4753</p>
+        <span class="block font-semi-bold mt-4">Sender</span>
+        <p>EHDHwaeGsearu1WLbKToRdmnoS8BGD9hGC</p>
+        <p>EJASrumnGC1WhoRdDDHLbKToS8BGeGsea9</p>
+        <span class="block font-semi-bold mt-4">Recipient</span>
+        <p>ELbKD9hGCanoS8EUDJwmu1BGseareGToRd</p>
     </div>
-</div> -->
-<!-- https://codepen.io/oxymorum/pen/dmxgPr?editors=0010a -->
+</div>

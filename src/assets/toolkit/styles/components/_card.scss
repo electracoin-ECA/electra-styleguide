@@ -18,21 +18,25 @@
 }
 
 .c-card__expandable {
-    overflow: hidden;
     height: 0;
-    opacity: 0;
-    @apply border-t border-grey-lightest p-8;
+    overflow: hidden;
 }
 
-// .c-card.expanded .c-card__toggle-icon {
-//     transform: rotate(180deg);
-// }
+.c-card.expanded .c-card__expandable {
+    @apply border-t border-grey-lightest p-8;
+    height: auto;
+    overflow: auto;
+}
 
-// .c-card__toggle-icon {
-//     @apply absolute text-grey-light flex content-end;
-//     top: config('padding.9');
-//     right: config('padding.8');
-// }
+.c-card.expanded .c-card__toggle-icon {
+    transform: rotate(180deg);
+}
+
+.c-card__toggle-icon {
+    @apply absolute text-grey-light flex content-end;
+    top: config('padding.9');
+    right: config('padding.8');
+}
 
 .c-card__actions {
     @apply flex overflow-hidden border-t;
