@@ -1,6 +1,6 @@
 {
   "name": "@electra/electra-styleguide",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Living styleguide and pattern library",
   "scripts": {
     "start": "npm run dev",
